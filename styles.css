@@ -178,7 +178,7 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 2px solid 
 .crown svg { width: 100%; fill: none; stroke: #e55aff; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
 .eyebrow { margin: 0 0 1px; color: #a18eae; font-size: 8px; font-weight: 700; letter-spacing: .27em; }
 .eyebrow span { color: #d765ff; }
-h1 { position: relative; isolation: isolate; width: max-content; max-width: 100%; margin: -4px auto -2px; color: #fff; background: #fff; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: url("#brush-edges"); font-family: "Road Rage", "Space Grotesk", sans-serif; font-size: clamp(70px, 11vw, 110px); font-weight: 400; letter-spacing: .025em; line-height: 1.08; transform: rotate(-1.5deg) skewX(-5deg) scaleX(1.55); text-shadow: 0 0 15px rgba(255, 255, 255, .18); }
+h1 { position: relative; isolation: isolate; width: max-content; max-width: 100%; margin: -4px auto -2px; color: #fff; background: #fff; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: url("#brush-edges"); font-family: "Sedgwick Ave Display", "Road Rage", "Space Grotesk", sans-serif; font-size: clamp(64px, 10vw, 104px); font-weight: 400; letter-spacing: 0; line-height: 1.08; transform: rotate(-1.5deg) skewX(-5deg) scaleX(1.08); text-shadow: 0 0 15px rgba(255, 255, 255, .18); }
 .title-x { color: #c165ff; background: linear-gradient(164deg, #ed75ff 4%, #d139ff 43%, #a323f4 72%, #7614d5 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 0 8px rgba(180, 67, 255, .32)); }
 h1::after { position: absolute; inset: 0; overflow: hidden; color: transparent; background: repeating-linear-gradient(111deg, transparent 0 5px, rgba(49, 7, 99, .58) 6px, transparent 7px 13px), repeating-linear-gradient(72deg, transparent 0 19px, rgba(255, 226, 255, .55) 20px, transparent 22px 37px); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; content: attr(data-brush-text); opacity: .42; pointer-events: none; transform: translate(-1px, 1px); }
 .svg-filters { position: absolute; width: 0; height: 0; overflow: hidden; }
@@ -363,7 +363,7 @@ h1::after { position: absolute; inset: 0; overflow: hidden; color: transparent; 
   .profile { width: min(100%, 400px); }
   .profile-emblem { min-height: 49px; }
   .crown { width: 48px; height: 38px; }
-  h1 { font-size: clamp(68px, 20vw, 84px); transform: rotate(-1.5deg) skewX(-5deg) scaleX(1.1); }
+  h1 { font-size: clamp(52px, 18vw, 76px); transform: rotate(-1.5deg) skewX(-5deg) scaleX(.94); }
   .tagline { font-size: 13px; }
   .intro { margin: 8px 0 20px; font-size: 8px; letter-spacing: .2em; line-height: 1.6; }
   .quick-links { gap: 8px; }
@@ -394,6 +394,7 @@ h1::after { position: absolute; inset: 0; overflow: hidden; color: transparent; 
 
 @media (max-width: 360px) {
   .page { padding-right: max(13px, env(safe-area-inset-right)); padding-left: max(13px, env(safe-area-inset-left)); }
+  h1 { font-size: clamp(40px, 17vw, 58px); transform: rotate(-1.5deg) skewX(-5deg) scaleX(.9); }
   .audio-player { right: 8px; width: min(194px, calc(100vw - 16px)); height: 42px; gap: 7px; padding-right: 9px; }
   .audio-toggle { width: 27px; height: 27px; }
   .audio-label { width: 56px; font-size: 10px; }
