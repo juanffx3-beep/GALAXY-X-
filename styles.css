@@ -209,7 +209,7 @@ h1 { margin: -4px 0 -2px; color: #c165ff; font-family: "Space Grotesk", sans-ser
 .game-art--five { background: linear-gradient(140deg, #202a1e, #090d0b); }
 .game-art--five span { color: #76d342; font-size: 16px; font-style: italic; }
 
-.footer { position: fixed; z-index: 2; right: 60px; bottom: 13px; left: 60px; display: flex; align-items: center; justify-content: center; gap: 9px; color: #786d85; font-size: 7px; letter-spacing: .04em; }
+.footer { position: fixed; z-index: 2; right: 60px; bottom: 7px; left: 60px; display: flex; align-items: center; justify-content: center; gap: 10px; color: #a392b4; font-size: 9px; letter-spacing: .04em; }
 .footer i { width: 2px; height: 2px; border-radius: 50%; background: #a778d9; }
 .footer button { padding: 0; border: 0; color: inherit; background: none; cursor: pointer; }
 .footer button:hover { color: #d8b6ff; }
@@ -256,14 +256,14 @@ h1 { margin: -4px 0 -2px; color: #c165ff; font-family: "Space Grotesk", sans-ser
   .projects { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 7px; }
   .project-card { min-height: 70px; }
   .project-card > span:last-child { font-size: 8px; }
-  .footer { bottom: 16px; left: 12px; gap: 6px; font-size: 6px; }
+  .footer { bottom: 10px; left: 12px; gap: 7px; font-size: 8px; }
   .visitor-count { right: 8px; bottom: 8px; }
 }
 
 @media (max-width: 360px) {
   .page { padding-right: 13px; padding-left: 13px; }
   .audio-player { right: 8px; width: 142px; }
-  .footer { right: 48px; left: 8px; gap: 4px; }
+  .footer { right: 48px; left: 8px; gap: 5px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
