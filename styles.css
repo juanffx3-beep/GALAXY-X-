@@ -253,10 +253,8 @@ h1::after { position: absolute; inset: 0; overflow: hidden; color: transparent; 
 .product-card { display: flex; min-width: 0; flex-direction: column; gap: 7px; padding: 10px; border: 1px solid rgba(200, 119, 224, .27); border-radius: 13px; color: inherit; text-align: left; background: linear-gradient(150deg, rgba(60, 24, 68, .68), rgba(22, 13, 34, .96) 70%); cursor: pointer; transition: border-color .2s ease, transform .2s ease, background .2s ease; }
 .product-card:hover { transform: translateY(-3px); border-color: rgba(226, 128, 255, .65); }
 .product-card.is-selected { border-color: rgba(226, 128, 255, .78); background: linear-gradient(150deg, rgba(111, 35, 119, .58), rgba(29, 14, 43, .96) 72%); }
-.product-art { position: relative; display: grid; min-height: 128px; overflow: hidden; place-items: center; border: 1px solid rgba(255, 255, 255, .1); border-radius: 9px; color: #fff4ff; background-color: #29102e; }
-.product-art::before, .product-art::after { position: absolute; content: ""; pointer-events: none; }
-.product-art::before { inset: 0; opacity: .82; background: repeating-linear-gradient(0deg, transparent 0 17px, rgba(245, 180, 255, .06) 18px), repeating-linear-gradient(90deg, transparent 0 17px, rgba(245, 180, 255, .06) 18px); }
-.product-art::after { right: -22px; bottom: -55px; width: 150px; height: 105px; border-radius: 50%; background: rgba(234, 86, 255, .24); filter: blur(20px); }
+.product-art { position: relative; display: grid; min-height: 128px; overflow: hidden; place-items: center; border: 1px solid rgba(255, 255, 255, .1); border-radius: 9px; color: #fff4ff; background-color: #160e1e; aspect-ratio: 16 / 9; }
+.product-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
 .product-art--aimbot { background-image: radial-gradient(ellipse at 24% 30%, rgba(244, 89, 255, .48), transparent 42%), linear-gradient(130deg, #6f215f, #26123b 70%); }
 .product-art--bypass { background-image: radial-gradient(ellipse at 75% 25%, rgba(171, 88, 255, .5), transparent 40%), linear-gradient(130deg, #45175d, #201338 72%); }
 .product-art--panel { background-image: radial-gradient(ellipse at 34% 80%, rgba(255, 88, 201, .4), transparent 42%), linear-gradient(130deg, #612052, #21122f 72%); }
