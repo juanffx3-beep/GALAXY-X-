@@ -9,17 +9,21 @@
       content="Galaxy X: desarrollo, innovación, productos digitales y comunidad."
     >
     <title>Galaxy X</title>
-    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="assets/galaxy-x-logo.png?v=galaxy-x-icon-3" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
       href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Road+Rage&family=Space+Grotesk:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     >
-    <link rel="stylesheet" href="styles.css?v=brush-title-5">
+    <link rel="stylesheet" href="styles.css?v=galaxy-x-player-1">
     <script src="script.js" defer></script>
   </head>
   <body>
+    <div class="boot-screen" role="status" aria-label="Cargando GALAXY X">
+      <img class="boot-logo" src="assets/galaxy-x-logo.png" alt="GALAXY X">
+      <span class="boot-spinner" aria-hidden="true"></span>
+    </div>
     <svg class="svg-filters" aria-hidden="true" focusable="false">
       <filter id="brush-edges" x="-8%" y="-14%" width="116%" height="128%" color-interpolation-filters="sRGB">
         <feTurbulence type="fractalNoise" baseFrequency=".035 .16" numOctaves="2" seed="8" result="grain" />
@@ -40,15 +44,18 @@
       </svg>
     </a>
 
-    <div class="audio-player" aria-label="Control de ambiente">
-      <button class="audio-toggle" type="button" aria-label="Reproducir ambiente" title="Activar ambiente">
+    <div class="audio-player" aria-label="Música de GALAXY X">
+      <button class="audio-toggle" type="button" aria-label="Reproducir música de GALAXY X" title="Reproducir música">
         <svg class="audio-play" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 12 7-12 7V5Z" /></svg>
         <svg class="audio-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h4v14H7zm7 0h4v14h-4z" /></svg>
       </button>
-      <span class="audio-label">Ambiente</span>
-      <input class="volume-control" type="range" min="0" max="100" value="25" aria-label="Volumen del ambiente">
+      <span class="audio-label">Galaxy X</span>
+      <input class="volume-control" type="range" min="0" max="100" value="50" aria-label="Volumen de la música">
       <span class="audio-level" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
     </div>
+    <audio class="site-audio" preload="none" loop>
+      <source src="assets/galaxy-x-theme.mp3" type="audio/mpeg">
+    </audio>
 
     <main id="inicio" class="page">
       <section class="profile" aria-labelledby="profile-title">
@@ -73,11 +80,11 @@
             <span class="link-copy"><strong>Comprar licencias</strong><small>Explora nuestros productos</small></span>
             <svg class="link-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7" /></svg>
           </button>
-          <button class="link-card" type="button" data-dialog="whatsapp">
+          <a class="link-card" href="https://wa.me/51993022680" target="_blank" rel="noopener noreferrer">
             <span class="link-icon link-icon--chat" aria-hidden="true"></span>
             <span class="link-copy"><strong>Grupo de ventas WhatsApp</strong><small>Ofertas, novedades y comunidad</small></span>
             <svg class="link-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7" /></svg>
-          </button>
+          </a>
           <a class="link-card" href="https://discord.gg/PdUw4xwcrW" target="_blank" rel="noopener noreferrer">
             <span class="link-icon link-icon--discord" aria-hidden="true"></span>
             <span class="link-copy"><strong>Grupo de ventas Discord</strong><small>Noticias, ventas y soporte</small></span>
@@ -116,7 +123,7 @@
     </main>
 
     <footer class="footer">
-      <span>© <span id="year">2026</span> GALAXY X</span><i></i><button type="button" data-dialog="terms">COPYRIGHT</button><i></i><button type="button" data-dialog="panel">Panel GALAXY X</button>
+      <span>© <span id="year">2026</span> Galaxy X</span><i></i><button type="button" data-dialog="terms">Copyright</button><i></i><button type="button" data-dialog="products">Store Galaxy X</button>
     </footer>
 
     <div class="visitor-count" role="status" aria-label="Visitas de esta sesión">

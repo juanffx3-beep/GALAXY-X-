@@ -13,7 +13,9 @@ Sitio adaptable a móviles servido por un pequeño servidor Node.js, preparado p
 
 ## Enlaces
 
-El catálogo de licencias y los términos se abren dentro de la página, sin redirecciones. Discord abre la invitación configurada en `index.html`; WhatsApp se muestra como tarjeta informativa hasta añadir su dirección real.
+El catálogo de licencias y los términos se abren dentro de la página, sin redirecciones. Discord abre la invitación configurada en `index.html` y WhatsApp enlaza a `https://wa.me/51993022680`.
+
+La página usa el logo como favicon y reproduce `assets/galaxy-x-theme.mp3` con el volumen inicial al 50 %. Los navegadores pueden bloquear la reproducción automática; si ocurre, el visitante puede iniciar la música desde el control.
 
 ## Seguridad y límites
 

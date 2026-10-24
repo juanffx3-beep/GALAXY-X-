@@ -6,10 +6,6 @@ const termsList = document.querySelector(".terms-list");
 const toast = document.querySelector(".toast");
 
 const messages = {
-  whatsapp: {
-    title: "Comunidad WhatsApp",
-    text: "Aquí encontrarás ofertas, novedades y conversación con la comunidad. El enlace de invitación se añadirá cuando esté disponible."
-  },
   discord: {
     title: "Comunidad Discord",
     text: "Noticias, ventas y soporte para la comunidad de GALAXY X."
@@ -121,53 +117,40 @@ try {
 const audioPlayer = document.querySelector(".audio-player");
 const audioToggle = document.querySelector(".audio-toggle");
 const volumeControl = document.querySelector(".volume-control");
-let audioContext;
-let masterGain;
-let playing = false;
+const music = document.querySelector(".site-audio");
 
 function setVolume() {
-  if (masterGain && audioContext) {
-    masterGain.gain.setTargetAtTime(Number(volumeControl.value) / 100 * 0.035, audioContext.currentTime, 0.08);
-  }
+  music.volume = Number(volumeControl.value) / 100;
 }
 
-async function toggleAudio() {
-  if (playing) {
-    await audioContext.suspend();
-    playing = false;
-  } else {
-    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-    if (!AudioContextClass) {
-      showToast("El audio ambiental no está disponible en este navegador.");
-      return;
-    }
-    if (!audioContext) {
-      audioContext = new AudioContextClass();
-      masterGain = audioContext.createGain();
-      masterGain.gain.value = 0;
-      masterGain.connect(audioContext.destination);
-      [110, 164.81, 220].forEach((frequency, index) => {
-        const oscillator = audioContext.createOscillator();
-        const voiceGain = audioContext.createGain();
-        oscillator.type = index === 1 ? "sine" : "triangle";
-        oscillator.frequency.value = frequency;
-        voiceGain.gain.value = index === 1 ? 0.22 : 0.13;
-        oscillator.connect(voiceGain);
-        voiceGain.connect(masterGain);
-        oscillator.start();
-      });
-      setVolume();
-    }
-    await audioContext.resume();
-    playing = true;
-  }
+function updateAudioState() {
+  const playing = !music.paused;
   audioToggle.setAttribute("aria-pressed", String(playing));
-  audioToggle.setAttribute("aria-label", playing ? "Pausar ambiente" : "Reproducir ambiente");
+  audioToggle.setAttribute("aria-label", playing ? "Pausar música de GALAXY X" : "Reproducir música de GALAXY X");
+  audioToggle.title = playing ? "Pausar música" : "Reproducir música";
   audioPlayer.classList.toggle("is-playing", playing);
 }
 
+async function startMusic() {
+  try {
+    await music.play();
+  } catch (error) {
+    if (error.name !== "NotAllowedError" && error.name !== "AbortError") {
+      showToast("No se pudo cargar la música de GALAXY X.");
+    }
+  }
+}
+
+music.volume = 0.5;
+setVolume();
+music.addEventListener("play", updateAudioState);
+music.addEventListener("pause", updateAudioState);
 audioToggle.addEventListener("click", () => {
-  toggleAudio().catch(() => showToast("No se pudo iniciar el audio ambiental."));
+  if (music.paused) {
+    startMusic();
+  } else {
+    music.pause();
+  }
 });
 volumeControl.addEventListener("input", setVolume);
 
@@ -178,6 +161,13 @@ function showToast(message) {
   window.clearTimeout(toastTimer);
   toastTimer = window.setTimeout(() => toast.classList.remove("is-visible"), 2600);
 }
+
+const bootScreen = document.querySelector(".boot-screen");
+window.setTimeout(() => {
+  bootScreen.classList.add("is-hidden");
+  window.setTimeout(() => bootScreen.remove(), 300);
+  startMusic();
+}, 1000);
 
 const canvas = document.querySelector(".stars");
 const context = canvas.getContext("2d");
