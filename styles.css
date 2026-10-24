@@ -174,11 +174,13 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 2px solid 
 .page { position: relative; z-index: 1; display: grid; width: 100%; min-height: 100svh; place-items: center; padding: 58px 24px 64px; }
 .profile { width: min(100%, 510px); text-align: center; animation: profile-arrive .85s cubic-bezier(.2,.8,.2,1) both; }
 .profile-emblem { display: flex; min-height: 49px; align-items: center; justify-content: center; margin: 0 auto 3px; }
-.crown { display: grid; width: 55px; height: 43px; place-items: center; filter: drop-shadow(0 2px 5px rgba(222, 92, 255, .3)); transform: rotate(-19deg); animation: crown-float 3.6s ease-in-out infinite; }
-.crown svg { width: 100%; fill: none; stroke: #e55aff; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.crown { display: grid; width: 70px; height: 48px; place-items: center; filter: drop-shadow(0 0 4px rgba(226, 82, 255, .72)) drop-shadow(0 3px 10px rgba(166, 49, 223, .34)); transform: rotate(-5deg); animation: crown-float 3.6s ease-in-out infinite; }
+.crown svg { width: 100%; overflow: visible; fill: rgba(157, 42, 240, .18); stroke: #e55aff; stroke-width: 3.2; stroke-linecap: round; stroke-linejoin: round; }
+.crown svg circle { fill: #f18bff; stroke: #f7d5ff; stroke-width: .8; }
+.crown svg .crown-spark { fill: #fff; stroke: none; }
 .eyebrow { margin: 0 0 1px; color: #a18eae; font-size: 8px; font-weight: 700; letter-spacing: .27em; }
 .eyebrow span { color: #d765ff; }
-h1 { position: relative; isolation: isolate; width: max-content; max-width: 100%; margin: -4px auto -2px; color: #fff; background: #fff; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: url("#brush-edges"); font-family: "Sedgwick Ave Display", "Road Rage", "Space Grotesk", sans-serif; font-size: clamp(64px, 10vw, 104px); font-weight: 400; letter-spacing: 0; line-height: 1.08; transform: rotate(-1.5deg) skewX(-5deg) scaleX(1.08); text-shadow: 0 0 15px rgba(255, 255, 255, .18); }
+h1 { position: relative; isolation: isolate; width: max-content; max-width: 100%; margin: -4px auto -2px; color: #fff; background: #fff; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: url("#brush-edges"); font-family: "Knewave", "Road Rage", "Space Grotesk", sans-serif; font-size: clamp(64px, 10vw, 104px); font-weight: 400; letter-spacing: -.035em; line-height: 1.08; transform: rotate(-2deg) skewX(-7deg) scaleX(1.16); text-shadow: 0 0 15px rgba(255, 255, 255, .18); }
 .title-x { color: #c165ff; background: linear-gradient(164deg, #ed75ff 4%, #d139ff 43%, #a323f4 72%, #7614d5 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 0 8px rgba(180, 67, 255, .32)); }
 h1::after { position: absolute; inset: 0; overflow: hidden; color: transparent; background: repeating-linear-gradient(111deg, transparent 0 5px, rgba(49, 7, 99, .58) 6px, transparent 7px 13px), repeating-linear-gradient(72deg, transparent 0 19px, rgba(255, 226, 255, .55) 20px, transparent 22px 37px); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; content: attr(data-brush-text); opacity: .42; pointer-events: none; transform: translate(-1px, 1px); }
 .svg-filters { position: absolute; width: 0; height: 0; overflow: hidden; }
@@ -292,7 +294,7 @@ h1::after { position: absolute; inset: 0; overflow: hidden; color: transparent; 
 @keyframes scene-arrive { from { opacity: .5; transform: scale(1.06); } to { opacity: 1; transform: scale(1.025); } }
 @keyframes profile-arrive { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes equalize { from { transform: scaleY(.45); } to { transform: scaleY(1.4); } }
-@keyframes crown-float { 0%, 100% { transform: translateY(0) rotate(-19deg); } 50% { transform: translateY(-5px) rotate(-14deg); } }
+@keyframes crown-float { 0%, 100% { transform: translateY(0) rotate(-5deg); } 50% { transform: translateY(-4px) rotate(-1deg); } }
 @keyframes boot-spin { to { transform: rotate(360deg); } }
 @keyframes project-border-orbit { to { --project-border-angle: 360deg; } }
 
@@ -362,8 +364,8 @@ h1::after { position: absolute; inset: 0; overflow: hidden; color: transparent; 
   .page { padding: max(66px, calc(env(safe-area-inset-top) + 54px)) max(19px, env(safe-area-inset-right)) max(92px, calc(env(safe-area-inset-bottom) + 78px)) max(19px, env(safe-area-inset-left)); }
   .profile { width: min(100%, 400px); }
   .profile-emblem { min-height: 49px; }
-  .crown { width: 48px; height: 38px; }
-  h1 { font-size: clamp(52px, 18vw, 76px); transform: rotate(-1.5deg) skewX(-5deg) scaleX(.94); }
+  .crown { width: clamp(38px, 14vw, 56px); height: clamp(28px, 10vw, 40px); }
+  h1 { font-size: clamp(52px, 18vw, 76px); transform: rotate(-2deg) skewX(-7deg) scaleX(1.02); }
   .tagline { font-size: 13px; }
   .intro { margin: 8px 0 20px; font-size: 8px; letter-spacing: .2em; line-height: 1.6; }
   .quick-links { gap: 8px; }
@@ -394,7 +396,7 @@ h1::after { position: absolute; inset: 0; overflow: hidden; color: transparent; 
 
 @media (max-width: 360px) {
   .page { padding-right: max(13px, env(safe-area-inset-right)); padding-left: max(13px, env(safe-area-inset-left)); }
-  h1 { font-size: clamp(40px, 17vw, 58px); transform: rotate(-1.5deg) skewX(-5deg) scaleX(.9); }
+  h1 { font-size: clamp(40px, 17vw, 58px); transform: rotate(-2deg) skewX(-7deg) scaleX(.98); }
   .audio-player { right: 8px; width: min(194px, calc(100vw - 16px)); height: 42px; gap: 7px; padding-right: 9px; }
   .audio-toggle { width: 27px; height: 27px; }
   .audio-label { width: 56px; font-size: 10px; }
