@@ -1,15 +1,15 @@
 # GALAXY X
 
-Sitio adaptable a móviles servido por un pequeño servidor Node.js, preparado para desplegarse en Railway.
+Sitio adaptable a móviles servido por un pequeño servidor Node.js y configurado para desplegarse en Render.
 
-## Despliegue en Railway
+## Despliegue en Render
 
-1. Crea un proyecto en Railway y conecta el repositorio `juanffx3-beep/GALAXY-X-`.
-2. Configura el servicio para desplegar desde la rama `main` y usa la raíz del repositorio como directorio.
-3. Railway detectará `package.json`; el comando de inicio configurado es `npm start`.
-4. En la configuración de red del servicio, genera un dominio público de Railway.
+1. Conecta el repositorio `juanffx3-beep/GALAXY-X-` a un servicio web de Render.
+2. Selecciona la rama `main` y deja el directorio raíz vacío.
+3. Usa Node como entorno, `npm install` como comando de compilación y `npm start` como comando de inicio.
+4. Render proporciona la variable `PORT`, que el servidor usa automáticamente. Genera o utiliza el dominio del servicio en Render.
 
-`railway.json` especifica el comando de inicio y la ruta de comprobación de salud. El servidor escucha en el puerto proporcionado por Railway.
+Los cambios enviados a la rama conectada de GitHub pueden iniciar una nueva publicación automática en Render. El archivo `railway.json` solo contiene configuración heredada de Railway y no es necesario para Render.
 
 ## Enlaces
 
