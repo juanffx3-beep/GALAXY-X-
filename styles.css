@@ -358,34 +358,57 @@ h1::after { position: absolute; inset: 0; overflow: hidden; color: transparent; 
   }
   .backdrop::before { background-position: left center; }
   .backdrop::after { background-position: right center; }
-  .page { padding: 66px 19px 74px; }
+  .page { padding: max(66px, calc(env(safe-area-inset-top) + 54px)) max(19px, env(safe-area-inset-right)) max(92px, calc(env(safe-area-inset-bottom) + 78px)) max(19px, env(safe-area-inset-left)); }
   .profile { width: min(100%, 400px); }
   .profile-emblem { min-height: 49px; }
   .crown { width: 48px; height: 38px; }
   h1 { font-size: clamp(68px, 20vw, 84px); transform: rotate(-1.5deg) skewX(-5deg) scaleX(1.1); }
-  .tagline { font-size: 12px; }
-  .intro { margin-bottom: 18px; font-size: 7px; }
-  .quick-links { gap: 7px; }
-  .link-card { min-height: 52px; }
+  .tagline { font-size: 13px; }
+  .intro { margin: 8px 0 20px; font-size: 8px; letter-spacing: .2em; line-height: 1.6; }
+  .quick-links { gap: 8px; }
+  .link-card { min-height: 58px; gap: 10px; padding-right: 13px; padding-left: 10px; }
+  .link-icon { width: 38px; height: 38px; }
+  .link-copy strong { font-size: 12px; }
+  .link-copy small { font-size: 9px; }
+  .link-arrow { width: 16px; height: 16px; }
+  .section-heading { gap: 13px; margin: 19px auto 10px; }
+  .section-heading h2 { font-size: 9px; }
   .projects { left: auto; width: 100%; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 7px; transform: none; }
-  .project-card { min-height: 86px; }
-  .project-card > span:last-child { font-size: 8px; }
-  .footer { bottom: 6px; left: 12px; gap: 7px; font-size: 10px; }
-  .visitor-count { right: 8px; bottom: 8px; }
-  .info-dialog--catalog { padding: 23px 17px 18px; }
+  .project-card { min-height: 98px; border-radius: 12px; }
+  .project-card > span:last-child { font-size: 9px; }
+  .footer { position: absolute; right: max(54px, calc(env(safe-area-inset-right) + 46px)); bottom: max(6px, env(safe-area-inset-bottom)); left: max(8px, env(safe-area-inset-left)); gap: 5px; padding: 8px 7px; border: 1px solid rgba(162, 111, 217, .2); border-radius: 11px; background: rgba(13, 8, 21, .86); box-shadow: 0 4px 18px rgba(0, 0, 0, .22); backdrop-filter: blur(12px); font-size: 9px; white-space: nowrap; }
+  .visitor-count { right: max(8px, env(safe-area-inset-right)); bottom: max(8px, env(safe-area-inset-bottom)); }
+  .info-dialog { width: min(100% - 24px, 420px); max-height: 88vh; max-height: 88dvh; padding: 24px 20px; }
+  .info-dialog--catalog { width: calc(100% - 20px); padding: 22px 14px 16px; }
+  .info-dialog h2 { font-size: 22px; }
+  .catalog-intro { margin-bottom: 14px; font-size: 12px; }
+  .catalog-controls { margin: 13px 0 14px; }
   .product-grid { grid-template-columns: minmax(0, 1fr); }
   .product-card { display: none; }
   .product-card.is-selected { display: flex; }
-  .product-art { min-height: 118px; }
+  .product-card > strong { font-size: 14px; }
+  .product-art { min-height: 0; }
+  .terms-list { gap: 10px; margin-bottom: 18px; padding-left: 18px; font-size: 11px; }
 }
 
 @media (max-width: 360px) {
-  .page { padding-right: 13px; padding-left: 13px; }
+  .page { padding-right: max(13px, env(safe-area-inset-right)); padding-left: max(13px, env(safe-area-inset-left)); }
   .audio-player { right: 8px; width: min(194px, calc(100vw - 16px)); height: 42px; gap: 7px; padding-right: 9px; }
   .audio-toggle { width: 27px; height: 27px; }
   .audio-label { width: 56px; font-size: 10px; }
   .volume-control { width: 55px; }
-  .footer { right: 48px; left: 8px; gap: 3px; font-size: 8px; white-space: nowrap; }
+  .projects { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; }
+  .project-card { min-height: 108px; }
+  .footer { gap: 3px; padding-right: 5px; padding-left: 5px; font-size: 8px; }
+  .visitor-count { right: max(7px, env(safe-area-inset-right)); }
+  .product-art { border-radius: 8px; }
+}
+
+@media (max-width: 340px) {
+  .link-card { gap: 8px; }
+  .link-icon { width: 34px; height: 34px; }
+  .link-copy strong { font-size: 11px; }
+  .link-copy small { font-size: 8px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
