@@ -273,8 +273,13 @@ if (!reducedMotion && window.matchMedia("(pointer: fine)").matches) {
         continue;
       }
       trailContext.beginPath();
-      trailContext.arc(particle.x, particle.y, particle.radius * particle.life, 0, Math.PI * 2);
-      trailContext.fillStyle = `rgba(221, 137, 255, ${particle.life * 0.42})`;
+      const radius = particle.radius * particle.life;
+      const glow = trailContext.createRadialGradient(particle.x, particle.y, 0, particle.x, particle.y, radius * 2.5);
+      glow.addColorStop(0, `rgba(255, 218, 255, ${particle.life * 0.78})`);
+      glow.addColorStop(0.35, `rgba(238, 117, 255, ${particle.life * 0.44})`);
+      glow.addColorStop(1, "rgba(168, 91, 255, 0)");
+      trailContext.arc(particle.x, particle.y, radius * 2.5, 0, Math.PI * 2);
+      trailContext.fillStyle = glow;
       trailContext.fill();
     }
 
@@ -300,19 +305,19 @@ if (!reducedMotion && window.matchMedia("(pointer: fine)").matches) {
       const deltaX = event.clientX - previousPointer.x;
       const deltaY = event.clientY - previousPointer.y;
       const distance = Math.hypot(deltaX, deltaY);
-      const count = Math.min(2, Math.floor(distance / 12));
+      const count = Math.min(3, Math.floor(distance / 8));
       for (let index = 0; index < count; index += 1) {
         const progress = (index + 1) / count;
         particles.push({
           x: previousPointer.x + deltaX * progress,
           y: previousPointer.y + deltaY * progress,
-          radius: Math.random() * 1.2 + 0.8,
+          radius: Math.random() * 0.8 + 1,
           life: 1,
-          velocityX: (Math.random() - 0.5) * 0.22,
-          velocityY: -Math.random() * 0.28
+          velocityX: (Math.random() - 0.5) * 0.3,
+          velocityY: (Math.random() - 0.5) * 0.3
         });
       }
-      if (particles.length > 20) particles.splice(0, particles.length - 20);
+      if (particles.length > 28) particles.splice(0, particles.length - 28);
     }
     previousPointer = { x: event.clientX, y: event.clientY };
     if (!trailFrame) trailFrame = window.requestAnimationFrame(drawTrail);
@@ -321,21 +326,53 @@ if (!reducedMotion && window.matchMedia("(pointer: fine)").matches) {
   function drawFollower() {
     if (!pointerTarget || !pointerFollower) return;
     const distance = Math.hypot(pointerTarget.x - pointerFollower.x, pointerTarget.y - pointerFollower.y);
-    pointerFollower.x += (pointerTarget.x - pointerFollower.x) * 0.18;
-    pointerFollower.y += (pointerTarget.y - pointerFollower.y) * 0.18;
+    pointerFollower.x += (pointerTarget.x - pointerFollower.x) * 0.22;
+    pointerFollower.y += (pointerTarget.y - pointerFollower.y) * 0.22;
 
-    const opacity = Math.max(0, 1 - (performance.now() - lastPointerTime) / 750);
+    const now = performance.now();
+    const opacity = Math.max(0, 1 - (now - lastPointerTime) / 850);
     if (opacity > 0.01 || distance > 0.5) {
-      const glow = trailContext.createRadialGradient(pointerFollower.x, pointerFollower.y, 0, pointerFollower.x, pointerFollower.y, 11);
-      glow.addColorStop(0, `rgba(255, 174, 226, ${opacity * 0.72})`);
-      glow.addColorStop(0.35, `rgba(244, 105, 197, ${opacity * 0.24})`);
-      glow.addColorStop(1, "rgba(244, 105, 197, 0)");
-      trailContext.fillStyle = glow;
+      const angle = Math.atan2(pointerTarget.y - pointerFollower.y, pointerTarget.x - pointerFollower.x);
+      const halo = trailContext.createRadialGradient(pointerFollower.x, pointerFollower.y, 0, pointerFollower.x, pointerFollower.y, 18);
+      halo.addColorStop(0, `rgba(255, 205, 250, ${opacity * 0.82})`);
+      halo.addColorStop(0.18, `rgba(255, 116, 225, ${opacity * 0.48})`);
+      halo.addColorStop(0.55, `rgba(190, 82, 255, ${opacity * 0.16})`);
+      halo.addColorStop(1, "rgba(168, 91, 255, 0)");
+      trailContext.fillStyle = halo;
       trailContext.beginPath();
-      trailContext.arc(pointerFollower.x, pointerFollower.y, 11, 0, Math.PI * 2);
+      trailContext.arc(pointerFollower.x, pointerFollower.y, 18, 0, Math.PI * 2);
       trailContext.fill();
+
+      const pulse = 6 + Math.sin(now / 140) * 0.7;
       trailContext.beginPath();
-      trailContext.arc(pointerFollower.x, pointerFollower.y, 2, 0, Math.PI * 2);
+      trailContext.arc(pointerFollower.x, pointerFollower.y, pulse, 0, Math.PI * 2);
+      trailContext.lineWidth = 0.8;
+      trailContext.strokeStyle = `rgba(255, 211, 255, ${opacity * 0.58})`;
+      trailContext.stroke();
+
+      const satelliteAngle = now / 260;
+      const satelliteX = pointerFollower.x + Math.cos(satelliteAngle) * 10;
+      const satelliteY = pointerFollower.y + Math.sin(satelliteAngle) * 10;
+      trailContext.beginPath();
+      trailContext.arc(satelliteX, satelliteY, 1.35, 0, Math.PI * 2);
+      trailContext.fillStyle = `rgba(224, 164, 255, ${opacity * 0.9})`;
+      trailContext.fill();
+
+      const tailX = pointerFollower.x - Math.cos(angle) * 16;
+      const tailY = pointerFollower.y - Math.sin(angle) * 16;
+      const tail = trailContext.createLinearGradient(tailX, tailY, pointerFollower.x, pointerFollower.y);
+      tail.addColorStop(0, "rgba(213, 106, 255, 0)");
+      tail.addColorStop(1, `rgba(255, 171, 238, ${opacity * 0.42})`);
+      trailContext.beginPath();
+      trailContext.moveTo(tailX, tailY);
+      trailContext.lineTo(pointerFollower.x, pointerFollower.y);
+      trailContext.lineWidth = 1.4;
+      trailContext.lineCap = "round";
+      trailContext.strokeStyle = tail;
+      trailContext.stroke();
+
+      trailContext.beginPath();
+      trailContext.arc(pointerFollower.x, pointerFollower.y, 2.2, 0, Math.PI * 2);
       trailContext.fillStyle = `rgba(255, 207, 239, ${opacity * 0.8})`;
       trailContext.fill();
     }
