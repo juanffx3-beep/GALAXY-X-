@@ -219,10 +219,17 @@ h1::after { position: absolute; inset: 0; overflow: hidden; color: transparent; 
 .section-heading span { height: 1px; flex: 1; background: linear-gradient(90deg, transparent, rgba(161, 109, 223, .48)); }
 .section-heading span:last-child { transform: rotate(180deg); }
 .section-heading h2 { margin: 0; color: #b5a0d2; font-size: 8px; font-weight: 800; letter-spacing: .27em; text-transform: uppercase; white-space: nowrap; }
-.projects { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px; }
-.project-card { display: flex; min-width: 0; min-height: 66px; align-items: center; justify-content: center; flex-direction: column; gap: 4px; padding: 7px 3px 6px; border: 1px solid rgba(155, 107, 223, .37); border-radius: 10px; color: #e7dfed; background: rgba(22, 14, 36, .8); backdrop-filter: blur(12px); cursor: pointer; transition: transform .22s, border-color .22s, background .22s, box-shadow .22s; }
+.projects { position: relative; left: 50%; display: grid; width: min(760px, calc(100vw - 48px)); grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px; transform: translateX(-50%); }
+.project-card { display: flex; min-width: 0; min-height: 88px; align-items: center; justify-content: center; flex-direction: column; gap: 4px; padding: 7px 3px 6px; border: 1px solid rgba(155, 107, 223, .37); border-radius: 10px; color: #e7dfed; background: rgba(22, 14, 36, .8); backdrop-filter: blur(12px); cursor: pointer; transition: transform .22s, border-color .22s, background .22s, box-shadow .22s; }
 .project-card:hover { transform: translateY(-4px); border-color: rgba(206, 148, 255, .8); background: rgba(42, 25, 66, .93); box-shadow: 0 9px 22px rgba(92, 29, 158, .22); }
 .project-card > span:last-child { overflow: hidden; width: 100%; font-size: 7px; font-weight: 700; text-overflow: ellipsis; white-space: nowrap; }
+.project-card--image { position: relative; isolation: isolate; overflow: hidden; justify-content: flex-end; padding: 0 5px 8px; background: #130d1b; }
+.project-background { position: absolute; z-index: -1; inset: 0; overflow: hidden; }
+.project-background img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; filter: brightness(.7); transition: transform .3s ease, filter .3s ease; }
+.project-card--image::after { position: absolute; z-index: -1; inset: 25% 0 0; background: linear-gradient(transparent, rgba(8, 5, 14, .92)); content: ""; pointer-events: none; }
+.project-card--image > .project-name { position: relative; z-index: 1; text-shadow: 0 1px 5px #000, 0 1px 9px #000; }
+.project-card--image:hover { background: #130d1b; }
+.project-card--image:hover .project-background img { filter: brightness(.88); transform: scale(1.06); }
 .game-art { display: block; width: 29px; height: 29px; flex: 0 0 auto; border-radius: 8px; background-image: url("assets/project-logos.png"); background-repeat: no-repeat; background-size: auto 178.5%; filter: drop-shadow(0 2px 5px rgba(0, 0, 0, .28)); transition: transform .2s ease, filter .2s ease; }
 .game-art--fire { background-position: 2.6% 44%; }
 .game-art--zombie { background-position: 20.2% 44%; }
@@ -347,8 +354,8 @@ h1::after { position: absolute; inset: 0; overflow: hidden; color: transparent; 
   .intro { margin-bottom: 18px; font-size: 7px; }
   .quick-links { gap: 7px; }
   .link-card { min-height: 52px; }
-  .projects { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 7px; }
-  .project-card { min-height: 70px; }
+  .projects { left: auto; width: 100%; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 7px; transform: none; }
+  .project-card { min-height: 86px; }
   .project-card > span:last-child { font-size: 8px; }
   .footer { bottom: 6px; left: 12px; gap: 7px; font-size: 10px; }
   .visitor-count { right: 8px; bottom: 8px; }

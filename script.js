@@ -182,8 +182,6 @@ function createStars() {
   const height = window.innerHeight;
   canvas.width = Math.round(width * pixelRatio);
   canvas.height = Math.round(height * pixelRatio);
-  canvas.style.width = `${width}px`;
-  canvas.style.height = `${height}px`;
   context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
   const count = Math.min(150, Math.round(width * height / 8200));
   stars = Array.from({ length: count }, () => ({
