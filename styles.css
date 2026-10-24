@@ -165,10 +165,9 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 2px solid 
 .brand-orbit img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; }
 .eyebrow { margin: 0 0 1px; color: #a18eae; font-size: 8px; font-weight: 700; letter-spacing: .27em; }
 .eyebrow span { color: #d765ff; }
-h1 { position: relative; isolation: isolate; margin: -4px 0 -2px; color: #c165ff; background: linear-gradient(180deg, #ed75ff 4%, #c23cff 52%, #8b20e8 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: url("#brush-edges"); font-family: "Knewave", "Space Grotesk", sans-serif; font-size: clamp(48px, 7vw, 68px); font-weight: 400; letter-spacing: .015em; line-height: 1.18; transform: rotate(-1.5deg) skewX(-3deg); text-shadow: 0 0 15px rgba(180, 67, 255, .18); }
-h1::after { position: absolute; inset: 0; overflow: hidden; color: transparent; background: repeating-linear-gradient(111deg, transparent 0 7px, rgba(255, 229, 255, .52) 8px, transparent 9px 17px); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; content: attr(data-brush-text); opacity: .25; pointer-events: none; transform: translate(-1px, 1px); }
+h1 { position: relative; isolation: isolate; width: max-content; max-width: 100%; margin: -4px auto -2px; color: #c165ff; background: linear-gradient(164deg, #ed75ff 4%, #d139ff 43%, #a323f4 72%, #7614d5 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: url("#brush-edges"); font-family: "Road Rage", "Space Grotesk", sans-serif; font-size: clamp(70px, 11vw, 110px); font-weight: 400; letter-spacing: .025em; line-height: 1.08; transform: rotate(-1.5deg) skewX(-5deg) scaleX(1.55); text-shadow: 0 0 15px rgba(180, 67, 255, .18); }
+h1::after { position: absolute; inset: 0; overflow: hidden; color: transparent; background: repeating-linear-gradient(111deg, transparent 0 5px, rgba(49, 7, 99, .58) 6px, transparent 7px 13px), repeating-linear-gradient(72deg, transparent 0 19px, rgba(255, 226, 255, .55) 20px, transparent 22px 37px); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; content: attr(data-brush-text); opacity: .42; pointer-events: none; transform: translate(-1px, 1px); }
 .svg-filters { position: absolute; width: 0; height: 0; overflow: hidden; }
-.title-dot { color: #ef74ff; }
 .tagline { margin: 3px 0 0; color: #f1e8f7; font-size: 14px; font-weight: 600; letter-spacing: -.02em; }
 .tagline span { color: #bd77ff; }
 .intro { margin: 7px 0 21px; color: #82748f; font-size: 8px; font-weight: 700; letter-spacing: .26em; text-transform: uppercase; }
@@ -280,7 +279,7 @@ h1::after { position: absolute; inset: 0; overflow: hidden; color: transparent; 
   .brand-orbit { width: 62px; height: 62px; }
   .brand-orbit img { width: 52px; height: 52px; }
   .eyebrow { font-size: 10px; }
-  h1 { font-size: clamp(58px, 8vw, 88px); }
+  h1 { font-size: clamp(88px, 12vw, 132px); }
   .tagline { font-size: 19px; }
   .intro { margin: 8px 0 23px; font-size: 9px; }
   .quick-links { width: min(100%, 500px); gap: 8px; }
@@ -302,7 +301,7 @@ h1::after { position: absolute; inset: 0; overflow: hidden; color: transparent; 
 @media (min-width: 561px) and (max-width: 720px) {
   .page { padding-right: 20px; padding-left: 20px; }
   .profile { width: min(100%, 620px); }
-  h1 { font-size: clamp(52px, 8vw, 70px); }
+  h1 { font-size: clamp(72px, 11vw, 90px); transform: rotate(-1.5deg) skewX(-5deg) scaleX(1.4); }
   .tagline { font-size: 16px; }
   .intro { margin-bottom: 17px; }
   .quick-links { width: min(100%, 460px); gap: 7px; }
@@ -335,7 +334,7 @@ h1::after { position: absolute; inset: 0; overflow: hidden; color: transparent; 
   .crown { width: 48px; height: 38px; }
   .brand-orbit { width: 50px; height: 50px; }
   .brand-orbit img { width: 42px; height: 42px; }
-  h1 { font-size: clamp(38px, 10.5vw, 54px); }
+  h1 { font-size: clamp(68px, 20vw, 84px); transform: rotate(-1.5deg) skewX(-5deg) scaleX(1.1); }
   .tagline { font-size: 12px; }
   .intro { margin-bottom: 18px; font-size: 7px; }
   .quick-links { gap: 7px; }
