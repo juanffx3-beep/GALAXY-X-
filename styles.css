@@ -38,13 +38,36 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 2px solid 
   z-index: -4;
   inset: 0;
   overflow: hidden;
-  background-color: #080a0b;
-  background-image:
-    linear-gradient(rgba(112, 126, 132, .1) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(112, 126, 132, .1) 1px, transparent 1px);
-  background-size: 66px 66px;
+  background:
+    radial-gradient(ellipse at 50% 44%, rgba(27, 10, 48, .42), transparent 54%),
+    #090510;
   transform: scale(1.025);
   animation: scene-arrive 1.4s ease-out both;
+}
+.backdrop::before,
+.backdrop::after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 33%;
+  content: "";
+  background-image: url("assets/luffy-gear5-bg.png");
+  background-repeat: no-repeat;
+  background-size: 100vw 100vh;
+  opacity: .84;
+  pointer-events: none;
+}
+.backdrop::before {
+  left: 0;
+  background-position: left center;
+  -webkit-mask-image: linear-gradient(90deg, #000 0%, rgba(0, 0, 0, .88) 24%, rgba(0, 0, 0, .3) 62%, transparent 100%);
+  mask-image: linear-gradient(90deg, #000 0%, rgba(0, 0, 0, .88) 24%, rgba(0, 0, 0, .3) 62%, transparent 100%);
+}
+.backdrop::after {
+  right: 0;
+  background-position: right center;
+  -webkit-mask-image: linear-gradient(270deg, #000 0%, rgba(0, 0, 0, .88) 24%, rgba(0, 0, 0, .3) 62%, transparent 100%);
+  mask-image: linear-gradient(270deg, #000 0%, rgba(0, 0, 0, .88) 24%, rgba(0, 0, 0, .3) 62%, transparent 100%);
 }
 
 .center-shade {
@@ -52,7 +75,7 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 2px solid 
   z-index: -3;
   inset: 0;
   pointer-events: none;
-  background: transparent;
+  background: linear-gradient(90deg, transparent 0%, rgba(9, 5, 16, .48) 15%, rgba(9, 5, 16, .96) 36%, rgba(9, 5, 16, .96) 64%, rgba(9, 5, 16, .48) 85%, transparent 100%);
 }
 
 .stars {
@@ -79,7 +102,7 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 2px solid 
   width: 45vw;
   height: 60vh;
   pointer-events: none;
-  opacity: .12;
+  opacity: .34;
   filter: blur(90px);
   transition: transform .4s ease-out;
 }
@@ -133,7 +156,7 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 2px solid 
 .audio-player.is-playing .audio-level i:nth-child(4) { animation-delay: .1s; }
 .site-audio { display: none; }
 
-.boot-screen { position: fixed; z-index: 20; inset: 0; display: grid; align-content: center; justify-items: center; gap: 20px; background-color: #080a0b; background-image: linear-gradient(rgba(112, 126, 132, .1) 1px, transparent 1px), linear-gradient(90deg, rgba(112, 126, 132, .1) 1px, transparent 1px); background-size: 66px 66px; opacity: 1; visibility: visible; transition: opacity .28s ease, visibility .28s ease; }
+.boot-screen { position: fixed; z-index: 20; inset: 0; display: grid; align-content: center; justify-items: center; gap: 20px; background: #05030a; opacity: 1; visibility: visible; transition: opacity .28s ease, visibility .28s ease; }
 .boot-screen.is-hidden { opacity: 0; visibility: hidden; pointer-events: none; }
 .boot-logo { width: clamp(96px, 17vw, 128px); aspect-ratio: 1; border: 1px solid rgba(205, 105, 255, .46); border-radius: 50%; object-fit: cover; box-shadow: 0 0 30px rgba(166, 49, 223, .12); }
 .boot-spinner { position: relative; display: block; width: 34px; height: 34px; animation: boot-spin .9s linear infinite; }
@@ -309,6 +332,14 @@ h1::after { position: absolute; inset: 0; overflow: hidden; color: transparent; 
 
 @media (max-width: 560px) {
   body { min-height: 100svh; }
+  .backdrop::before,
+  .backdrop::after {
+    width: 40%;
+    background-size: 160vw 100vh;
+    opacity: .68;
+  }
+  .backdrop::before { background-position: left center; }
+  .backdrop::after { background-position: right center; }
   .page { padding: 66px 19px 74px; }
   .profile { width: min(100%, 400px); }
   .profile-emblem { min-height: 49px; }
