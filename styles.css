@@ -165,7 +165,9 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 2px solid 
 .brand-orbit img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; }
 .eyebrow { margin: 0 0 1px; color: #a18eae; font-size: 8px; font-weight: 700; letter-spacing: .27em; }
 .eyebrow span { color: #d765ff; }
-h1 { margin: -4px 0 -2px; color: #c165ff; font-family: "Permanent Marker", "Space Grotesk", sans-serif; font-size: clamp(43px, 7vw, 62px); font-weight: 400; letter-spacing: -.035em; line-height: 1.2; text-shadow: 0 0 16px rgba(180, 67, 255, .3); }
+h1 { position: relative; isolation: isolate; margin: -4px 0 -2px; color: #c165ff; background: linear-gradient(180deg, #ed75ff 4%, #c23cff 52%, #8b20e8 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: url("#brush-edges"); font-family: "Knewave", "Space Grotesk", sans-serif; font-size: clamp(48px, 7vw, 68px); font-weight: 400; letter-spacing: .015em; line-height: 1.18; transform: rotate(-1.5deg) skewX(-3deg); text-shadow: 0 0 15px rgba(180, 67, 255, .18); }
+h1::after { position: absolute; inset: 0; overflow: hidden; color: transparent; background: repeating-linear-gradient(111deg, transparent 0 7px, rgba(255, 229, 255, .52) 8px, transparent 9px 17px); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; content: attr(data-brush-text); opacity: .25; pointer-events: none; transform: translate(-1px, 1px); }
+.svg-filters { position: absolute; width: 0; height: 0; overflow: hidden; }
 .title-dot { color: #ef74ff; }
 .tagline { margin: 3px 0 0; color: #f1e8f7; font-size: 14px; font-weight: 600; letter-spacing: -.02em; }
 .tagline span { color: #bd77ff; }
@@ -278,7 +280,7 @@ h1 { margin: -4px 0 -2px; color: #c165ff; font-family: "Permanent Marker", "Spac
   .brand-orbit { width: 62px; height: 62px; }
   .brand-orbit img { width: 52px; height: 52px; }
   .eyebrow { font-size: 10px; }
-  h1 { font-size: clamp(52px, 8vw, 86px); }
+  h1 { font-size: clamp(58px, 8vw, 88px); }
   .tagline { font-size: 19px; }
   .intro { margin: 8px 0 23px; font-size: 9px; }
   .quick-links { width: min(100%, 500px); gap: 8px; }
@@ -300,7 +302,7 @@ h1 { margin: -4px 0 -2px; color: #c165ff; font-family: "Permanent Marker", "Spac
 @media (min-width: 561px) and (max-width: 720px) {
   .page { padding-right: 20px; padding-left: 20px; }
   .profile { width: min(100%, 620px); }
-  h1 { font-size: clamp(48px, 8vw, 68px); }
+  h1 { font-size: clamp(52px, 8vw, 70px); }
   .tagline { font-size: 16px; }
   .intro { margin-bottom: 17px; }
   .quick-links { width: min(100%, 460px); gap: 7px; }
@@ -333,7 +335,7 @@ h1 { margin: -4px 0 -2px; color: #c165ff; font-family: "Permanent Marker", "Spac
   .crown { width: 48px; height: 38px; }
   .brand-orbit { width: 50px; height: 50px; }
   .brand-orbit img { width: 42px; height: 42px; }
-  h1 { font-size: clamp(36px, 10vw, 48px); }
+  h1 { font-size: clamp(38px, 10.5vw, 54px); }
   .tagline { font-size: 12px; }
   .intro { margin-bottom: 18px; font-size: 7px; }
   .quick-links { gap: 7px; }
