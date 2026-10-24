@@ -14,3 +14,9 @@ Sitio adaptable a móviles servido por un pequeño servidor Node.js, preparado p
 ## Enlaces
 
 El catálogo de licencias y los términos se abren dentro de la página, sin redirecciones. Discord abre la invitación configurada en `index.html`; WhatsApp se muestra como tarjeta informativa hasta añadir su dirección real.
+
+## Seguridad y límites
+
+El servidor Node y el archivo `_headers` aplican políticas de seguridad del navegador, incluyendo una Content Security Policy, protección contra la carga en iframes y restricciones de funciones que el sitio no utiliza. Netlify aplica `_headers` al publicar el sitio desde la raíz.
+
+Como el sitio es público y se ejecuta en el navegador del visitante, no es posible impedir completamente que alguien vea, copie o descargue su HTML, CSS, JavaScript e imágenes. Estas medidas reducen ciertos riesgos del navegador; no impiden la clonación ni sustituyen la seguridad de cuentas, APIs o servicios externos. No incluyas claves privadas ni contraseñas en los archivos del sitio.

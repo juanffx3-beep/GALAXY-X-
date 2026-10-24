@@ -12,6 +12,15 @@ const contentTypes = {
   ".svg": "image/svg+xml",
   ".json": "application/json; charset=utf-8"
 };
+const securityHeaders = {
+  "Content-Security-Policy": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; upgrade-insecure-requests",
+  "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+  "Referrer-Policy": "strict-origin-when-cross-origin",
+  "Strict-Transport-Security": "max-age=31536000",
+  "X-Content-Type-Options": "nosniff",
+  "X-Frame-Options": "DENY",
+  "X-Permitted-Cross-Domain-Policies": "none"
+};
 
 const server = http.createServer((request, response) => {
   if (request.method !== "GET" && request.method !== "HEAD") {
@@ -30,6 +39,12 @@ const server = http.createServer((request, response) => {
   }
 
   const relativePath = pathname === "/" ? "index.html" : pathname.replace(/^\/+/, "");
+  if (relativePath.split(/[\\/]/).some((segment) => segment.startsWith("."))) {
+    response.writeHead(404);
+    response.end("Not found");
+    return;
+  }
+
   const filePath = path.resolve(root, relativePath);
   if (filePath !== root && !filePath.startsWith(`${root}${path.sep}`)) {
     response.writeHead(403);
@@ -47,8 +62,8 @@ const server = http.createServer((request, response) => {
     response.writeHead(200, {
       "Content-Type": contentTypes[path.extname(filePath).toLowerCase()] || "application/octet-stream",
       "Content-Length": stats.size,
-      "X-Content-Type-Options": "nosniff",
-      "Cache-Control": "public, max-age=300"
+      "Cache-Control": "public, max-age=300",
+      ...securityHeaders
     });
 
     if (request.method === "HEAD") {
