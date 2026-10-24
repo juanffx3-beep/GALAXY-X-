@@ -36,13 +36,45 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 2px solid 
   position: fixed;
   z-index: -4;
   inset: 0;
+  overflow: hidden;
   background:
-    linear-gradient(90deg, rgba(9, 5, 16, .09) 0%, rgba(9, 5, 16, .66) 22%, rgba(9, 5, 16, .91) 42%, rgba(9, 5, 16, .86) 61%, rgba(9, 5, 16, .2) 100%),
-    linear-gradient(0deg, rgba(10, 4, 19, .94) 0%, rgba(10, 4, 19, .05) 27%, rgba(10, 4, 19, .16) 74%, rgba(9, 5, 16, .58) 100%),
-    url("assets/ambient-scene.svg") center / cover no-repeat,
+    radial-gradient(ellipse at 50% 44%, rgba(27, 10, 48, .42), transparent 54%),
     #090510;
   transform: scale(1.025);
   animation: scene-arrive 1.4s ease-out both;
+}
+.backdrop::before,
+.backdrop::after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 33%;
+  content: "";
+  background-image: url("assets/luffy-gear5-bg.png");
+  background-repeat: no-repeat;
+  background-size: 100vw 100vh;
+  opacity: .84;
+  pointer-events: none;
+}
+.backdrop::before {
+  left: 0;
+  background-position: left center;
+  -webkit-mask-image: linear-gradient(90deg, #000 0%, rgba(0, 0, 0, .88) 24%, rgba(0, 0, 0, .3) 62%, transparent 100%);
+  mask-image: linear-gradient(90deg, #000 0%, rgba(0, 0, 0, .88) 24%, rgba(0, 0, 0, .3) 62%, transparent 100%);
+}
+.backdrop::after {
+  right: 0;
+  background-position: right center;
+  -webkit-mask-image: linear-gradient(270deg, #000 0%, rgba(0, 0, 0, .88) 24%, rgba(0, 0, 0, .3) 62%, transparent 100%);
+  mask-image: linear-gradient(270deg, #000 0%, rgba(0, 0, 0, .88) 24%, rgba(0, 0, 0, .3) 62%, transparent 100%);
+}
+
+.center-shade {
+  position: fixed;
+  z-index: -3;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent 0%, rgba(9, 5, 16, .48) 15%, rgba(9, 5, 16, .96) 36%, rgba(9, 5, 16, .96) 64%, rgba(9, 5, 16, .48) 85%, transparent 100%);
 }
 
 .stars {
@@ -205,8 +237,14 @@ h1 { margin: -4px 0 -2px; color: #c165ff; font-family: "Space Grotesk", sans-ser
 
 @media (max-width: 560px) {
   body { min-height: 100svh; }
-  .backdrop { background-position: center, center, 52% center, center; }
-  .backdrop::after { position: absolute; inset: 0; content: ""; background: rgba(9, 5, 16, .2); }
+  .backdrop::before,
+  .backdrop::after {
+    width: 40%;
+    background-size: 160vw 100vh;
+    opacity: .68;
+  }
+  .backdrop::before { background-position: left center; }
+  .backdrop::after { background-position: right center; }
   .page { padding: 66px 19px 74px; }
   .profile { width: min(100%, 400px); }
   .crown { width: 48px; height: 38px; }

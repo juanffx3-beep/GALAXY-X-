@@ -171,6 +171,20 @@ function drawStars(time = 0) {
   const width = window.innerWidth;
   const height = window.innerHeight;
   context.clearRect(0, 0, width, height);
+  for (let index = 0; index < stars.length; index += 1) {
+    for (let neighbor = index + 1; neighbor < stars.length; neighbor += 1) {
+      const deltaX = stars[index].x - stars[neighbor].x;
+      const deltaY = stars[index].y - stars[neighbor].y;
+      const distance = Math.hypot(deltaX, deltaY);
+      if (distance < 105) {
+        context.beginPath();
+        context.moveTo(stars[index].x, stars[index].y);
+        context.lineTo(stars[neighbor].x, stars[neighbor].y);
+        context.strokeStyle = `rgba(147, 91, 221, ${(1 - distance / 105) * 0.15})`;
+        context.stroke();
+      }
+    }
+  }
   stars.forEach((star) => {
     const twinkle = reducedMotion ? 0.6 : 0.27 + (Math.sin(time * 0.0007 * star.speed + star.phase) + 1) * 0.34;
     context.beginPath();
