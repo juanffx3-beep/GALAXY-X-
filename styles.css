@@ -163,12 +163,9 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 2px solid 
 
 .page { position: relative; z-index: 1; display: grid; width: 100%; min-height: 100svh; place-items: center; padding: 58px 24px 64px; }
 .profile { width: min(100%, 510px); text-align: center; animation: profile-arrive .85s cubic-bezier(.2,.8,.2,1) both; }
-.profile-emblem { display: flex; min-height: 57px; align-items: center; justify-content: center; gap: 13px; margin: 0 auto 3px; }
+.profile-emblem { display: flex; min-height: 49px; align-items: center; justify-content: center; margin: 0 auto 3px; }
 .crown { display: grid; width: 55px; height: 43px; place-items: center; filter: drop-shadow(0 2px 5px rgba(222, 92, 255, .3)); transform: rotate(-19deg); animation: crown-float 3.6s ease-in-out infinite; }
 .crown svg { width: 100%; fill: none; stroke: #e55aff; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
-.brand-orbit { position: relative; display: grid; width: 52px; height: 52px; flex: 0 0 auto; place-items: center; border-radius: 50%; background: rgba(19, 10, 28, .88); }
-.brand-orbit::before { position: absolute; inset: -2px; border: 1px solid transparent; border-radius: 50%; background: conic-gradient(from 0deg, #e773ff, #8c4bc7 28%, rgba(140, 75, 199, .18) 48%, #d455ee 70%, #e773ff) border-box; -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; content: ""; animation: orbit-spin 8s linear infinite; }
-.brand-orbit img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; }
 .eyebrow { margin: 0 0 1px; color: #a18eae; font-size: 8px; font-weight: 700; letter-spacing: .27em; }
 .eyebrow span { color: #d765ff; }
 h1 { position: relative; isolation: isolate; width: max-content; max-width: 100%; margin: -4px auto -2px; color: #c165ff; background: linear-gradient(164deg, #ed75ff 4%, #d139ff 43%, #a323f4 72%, #7614d5 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: url("#brush-edges"); font-family: "Road Rage", "Space Grotesk", sans-serif; font-size: clamp(70px, 11vw, 110px); font-weight: 400; letter-spacing: .025em; line-height: 1.08; transform: rotate(-1.5deg) skewX(-5deg) scaleX(1.55); text-shadow: 0 0 15px rgba(180, 67, 255, .18); }
@@ -275,7 +272,6 @@ h1::after { position: absolute; inset: 0; overflow: hidden; color: transparent; 
 @keyframes profile-arrive { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes equalize { from { transform: scaleY(.45); } to { transform: scaleY(1.4); } }
 @keyframes crown-float { 0%, 100% { transform: translateY(0) rotate(-19deg); } 50% { transform: translateY(-5px) rotate(-14deg); } }
-@keyframes orbit-spin { to { transform: rotate(360deg); } }
 @keyframes boot-spin { to { transform: rotate(360deg); } }
 
 @media (min-width: 561px) {
@@ -337,10 +333,8 @@ h1::after { position: absolute; inset: 0; overflow: hidden; color: transparent; 
   .backdrop::after { background-position: right center; }
   .page { padding: 66px 19px 74px; }
   .profile { width: min(100%, 400px); }
-  .profile-emblem { min-height: 57px; gap: 11px; }
+  .profile-emblem { min-height: 49px; }
   .crown { width: 48px; height: 38px; }
-  .brand-orbit { width: 50px; height: 50px; }
-  .brand-orbit img { width: 42px; height: 42px; }
   h1 { font-size: clamp(68px, 20vw, 84px); transform: rotate(-1.5deg) skewX(-5deg) scaleX(1.1); }
   .tagline { font-size: 12px; }
   .intro { margin-bottom: 18px; font-size: 7px; }

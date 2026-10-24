@@ -174,6 +174,7 @@ const context = canvas.getContext("2d");
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 let stars = [];
 let animationFrame = 0;
+let previousStarsFrameTime = 0;
 
 function createStars() {
   const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
@@ -190,14 +191,28 @@ function createStars() {
     y: Math.random() * height,
     radius: Math.random() * 1.15 + 0.25,
     phase: Math.random() * Math.PI * 2,
-    speed: Math.random() * 0.8 + 0.2
+    speed: Math.random() * 0.8 + 0.2,
+    driftX: (Math.random() - 0.5) * 0.18,
+    driftY: (Math.random() - 0.5) * 0.18
   }));
 }
 
 function drawStars(time = 0) {
   const width = window.innerWidth;
   const height = window.innerHeight;
+  const delta = previousStarsFrameTime ? Math.min((time - previousStarsFrameTime) / 16.67, 2) : 1;
+  previousStarsFrameTime = time;
   context.clearRect(0, 0, width, height);
+  if (!reducedMotion) {
+    stars.forEach((star) => {
+      star.x += star.driftX * delta;
+      star.y += star.driftY * delta;
+      if (star.x < 0) star.x = width;
+      else if (star.x > width) star.x = 0;
+      if (star.y < 0) star.y = height;
+      else if (star.y > height) star.y = 0;
+    });
+  }
   for (let index = 0; index < stars.length; index += 1) {
     for (let neighbor = index + 1; neighbor < stars.length; neighbor += 1) {
       const deltaX = stars[index].x - stars[neighbor].x;
@@ -252,7 +267,7 @@ if (!reducedMotion && window.matchMedia("(pointer: fine)").matches) {
 
     for (let index = particles.length - 1; index >= 0; index -= 1) {
       const particle = particles[index];
-      particle.life -= delta;
+      particle.life -= delta * 0.045;
       particle.x += particle.velocityX * delta;
       particle.y += particle.velocityY * delta;
       if (particle.life <= 0) {
@@ -265,7 +280,8 @@ if (!reducedMotion && window.matchMedia("(pointer: fine)").matches) {
       trailContext.fill();
     }
 
-    if (particles.length) {
+    const followerActive = drawFollower();
+    if (particles.length || followerActive) {
       trailFrame = window.requestAnimationFrame(drawTrail);
     } else {
       trailFrame = 0;
@@ -275,26 +291,56 @@ if (!reducedMotion && window.matchMedia("(pointer: fine)").matches) {
 
   resizeTrail();
   window.addEventListener("resize", resizeTrail, { passive: true });
+  let pointerTarget = null;
+  let pointerFollower = null;
+  let lastPointerTime = 0;
   window.addEventListener("pointermove", (event) => {
+    pointerTarget = { x: event.clientX, y: event.clientY };
+    if (!pointerFollower) pointerFollower = { ...pointerTarget };
+    lastPointerTime = performance.now();
     if (previousPointer) {
       const deltaX = event.clientX - previousPointer.x;
       const deltaY = event.clientY - previousPointer.y;
       const distance = Math.hypot(deltaX, deltaY);
-      const count = Math.min(3, Math.floor(distance / 9));
+      const count = Math.min(2, Math.floor(distance / 12));
       for (let index = 0; index < count; index += 1) {
         const progress = (index + 1) / count;
         particles.push({
           x: previousPointer.x + deltaX * progress,
           y: previousPointer.y + deltaY * progress,
-          radius: Math.random() * 1.7 + 1,
+          radius: Math.random() * 1.2 + 0.8,
           life: 1,
-          velocityX: (Math.random() - 0.5) * 0.3,
-          velocityY: -Math.random() * 0.42
+          velocityX: (Math.random() - 0.5) * 0.22,
+          velocityY: -Math.random() * 0.28
         });
       }
-      if (particles.length > 28) particles.splice(0, particles.length - 28);
-      if (particles.length && !trailFrame) trailFrame = window.requestAnimationFrame(drawTrail);
+      if (particles.length > 20) particles.splice(0, particles.length - 20);
     }
     previousPointer = { x: event.clientX, y: event.clientY };
+    if (!trailFrame) trailFrame = window.requestAnimationFrame(drawTrail);
   }, { passive: true });
+
+  function drawFollower() {
+    if (!pointerTarget || !pointerFollower) return;
+    const distance = Math.hypot(pointerTarget.x - pointerFollower.x, pointerTarget.y - pointerFollower.y);
+    pointerFollower.x += (pointerTarget.x - pointerFollower.x) * 0.18;
+    pointerFollower.y += (pointerTarget.y - pointerFollower.y) * 0.18;
+
+    const opacity = Math.max(0, 1 - (performance.now() - lastPointerTime) / 750);
+    if (opacity > 0.01 || distance > 0.5) {
+      const glow = trailContext.createRadialGradient(pointerFollower.x, pointerFollower.y, 0, pointerFollower.x, pointerFollower.y, 11);
+      glow.addColorStop(0, `rgba(255, 174, 226, ${opacity * 0.72})`);
+      glow.addColorStop(0.35, `rgba(244, 105, 197, ${opacity * 0.24})`);
+      glow.addColorStop(1, "rgba(244, 105, 197, 0)");
+      trailContext.fillStyle = glow;
+      trailContext.beginPath();
+      trailContext.arc(pointerFollower.x, pointerFollower.y, 11, 0, Math.PI * 2);
+      trailContext.fill();
+      trailContext.beginPath();
+      trailContext.arc(pointerFollower.x, pointerFollower.y, 2, 0, Math.PI * 2);
+      trailContext.fillStyle = `rgba(255, 207, 239, ${opacity * 0.8})`;
+      trailContext.fill();
+    }
+    return opacity > 0.01 || distance > 0.5;
+  }
 }
