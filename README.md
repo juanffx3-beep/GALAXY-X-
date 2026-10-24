@@ -1,4 +1,4 @@
-# MrGarabato
+# GALAXY X
 
 Sitio estático, adaptable a móviles y sin dependencias de compilación. Los mismos archivos sirven para GitHub Pages y Railway.
 
@@ -14,4 +14,4 @@ Conecta el repositorio a un proyecto Railway. El archivo `railway.json` configur
 
 ## Enlaces
 
-La tienda apunta al dominio que aparece en la referencia (`mrgarabato.com`) y Discord abre la invitación configurada en `index.html`. Neural Auth y WhatsApp se muestran como tarjetas informativas hasta añadir sus direcciones reales. Se pueden conectar desde `index.html`; los mensajes de esas tarjetas están en `script.js`.
+El catálogo de licencias y la sección de copyright se abren dentro de la página, sin redirecciones. Discord abre la invitación configurada en `index.html`; WhatsApp se muestra como tarjeta informativa hasta añadir su dirección real.

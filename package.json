@@ -1,8 +1,8 @@
 {
-  "name": "mrg-landing",
+  "name": "galaxy-x-landing",
   "version": "1.0.0",
   "private": true,
-  "description": "Sitio personal de MrGarabato",
+  "description": "Sitio de GALAXY X",
   "scripts": {
     "start": "node server.js"
   },

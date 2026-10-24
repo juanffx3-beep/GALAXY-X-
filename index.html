@@ -6,9 +6,9 @@
     <meta name="theme-color" content="#090510">
     <meta
       name="description"
-      content="El universo de MrGarabato: desarrollo, Neural Auth, comunidad y proyectos."
+      content="Galaxy X: desarrollo, innovación, productos digitales y comunidad."
     >
-    <title>MrGarabato — Desarrollo, innovación y comunidad</title>
+    <title>GALAXY X — Desarrollo, innovación y comunidad</title>
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,17 +16,18 @@
       href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     >
-    <link rel="stylesheet" href="styles.css?v=game-logos-1">
+    <link rel="stylesheet" href="styles.css?v=galaxy-x-3">
     <script src="script.js" defer></script>
   </head>
   <body>
     <div class="backdrop" aria-hidden="true"></div>
     <div class="center-shade" aria-hidden="true"></div>
     <canvas class="stars" aria-hidden="true"></canvas>
+    <canvas class="cursor-trail" aria-hidden="true"></canvas>
     <div class="ambient ambient--left" aria-hidden="true"></div>
     <div class="ambient ambient--right" aria-hidden="true"></div>
 
-    <a class="brand-mark" href="#inicio" aria-label="MrGarabato, ir al inicio">
+    <a class="brand-mark" href="#inicio" aria-label="GALAXY X, ir al inicio">
       <svg viewBox="0 0 48 48" aria-hidden="true">
         <path d="M7 33 12 13l12 10 12-10 5 20-17-8L7 33Z" />
         <path d="m11 36 12-7 14 7M18 16l5-8 6 8" />
@@ -45,27 +46,30 @@
 
     <main id="inicio" class="page">
       <section class="profile" aria-labelledby="profile-title">
-        <div class="crown" aria-hidden="true">
-          <svg viewBox="0 0 64 46">
-            <path d="m7 13 12 11L31 5l11 19 15-12-8 27H15L7 13Z" />
-            <path d="M14 34h36M18 40h28" />
-            <circle cx="7" cy="11" r="3" /><circle cx="31" cy="5" r="3" /><circle cx="57" cy="11" r="3" />
-          </svg>
+        <div class="profile-emblem" aria-hidden="true">
+          <div class="crown">
+            <svg viewBox="0 0 64 46">
+              <path d="m7 13 12 11L31 5l11 19 15-12-8 27H15L7 13Z" />
+              <path d="M14 34h36M18 40h28" />
+              <circle cx="7" cy="11" r="3" /><circle cx="31" cy="5" r="3" /><circle cx="57" cy="11" r="3" />
+            </svg>
+          </div>
+          <span class="brand-orbit"><img src="assets/galaxy-x-logo.png" alt=""></span>
         </div>
         <p class="eyebrow">CREADOR INDEPENDIENTE <span>·</span> ONLINE</p>
-        <h1 id="profile-title">MrGarabato<span class="title-dot">.</span></h1>
-        <p class="tagline">Desarrollador &amp; creador de <span>Neural Auth</span></p>
+        <h1 id="profile-title">GALAXY X<span class="title-dot">.</span></h1>
+        <p class="tagline">Developer &amp; Boss de <span>Galaxy X</span></p>
         <p class="intro">Desarrollo, innovación y comunidad</p>
 
         <nav class="quick-links" aria-label="Enlaces principales">
-          <a class="link-card" href="https://mrgarabato.com" target="_blank" rel="noopener noreferrer">
+          <button class="link-card" type="button" data-dialog="products">
             <span class="link-icon link-icon--store" aria-hidden="true"></span>
-            <span class="link-copy"><strong>Comprar licencias</strong><small>Tienda oficial · mrgarabato.com</small></span>
+            <span class="link-copy"><strong>Comprar licencias</strong><small>Explora nuestros productos</small></span>
             <svg class="link-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7" /></svg>
-          </a>
-          <button class="link-card" type="button" data-dialog="neural">
+          </button>
+          <button class="link-card" type="button" data-dialog="terms">
             <span class="link-icon link-icon--shield" aria-hidden="true"></span>
-            <span class="link-copy"><strong>Neural Auth</strong><small>Mi plataforma de autenticación</small></span>
+            <span class="link-copy"><strong>COPYRIGHT</strong><small>Términos y privacidad</small></span>
             <svg class="link-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7" /></svg>
           </button>
           <button class="link-card" type="button" data-dialog="whatsapp">
@@ -111,7 +115,7 @@
     </main>
 
     <footer class="footer">
-      <span>© <span id="year">2026</span> MrGarabato</span><i></i><span>Neural Auth</span><i></i><button type="button" data-dialog="panel">Panel MrGarabato</button>
+      <span>© <span id="year">2026</span> GALAXY X</span><i></i><button type="button" data-dialog="terms">COPYRIGHT</button><i></i><button type="button" data-dialog="panel">Panel GALAXY X</button>
     </footer>
 
     <div class="visitor-count" role="status" aria-label="Visitas de esta sesión">
@@ -121,9 +125,47 @@
 
     <dialog class="info-dialog" aria-labelledby="dialog-title">
       <button class="dialog-close" type="button" aria-label="Cerrar">×</button>
-      <span class="dialog-kicker">MRGARABATO <span>✦</span></span>
-      <h2 id="dialog-title">Neural Auth</h2>
+      <span class="dialog-kicker">GALAXY X <span>✦</span></span>
+      <h2 id="dialog-title">Copyright y términos</h2>
       <p class="dialog-description"></p>
+      <section class="catalog" hidden aria-label="Catálogo de productos">
+        <p class="catalog-intro">Explora el catálogo de productos de GALAXY X.</p>
+        <div class="product-grid">
+          <button class="product-card is-selected" type="button" data-product-choice aria-pressed="true">
+            <span class="product-art product-art--aimbot"><span>AC</span><i>VALORANT</i></span>
+            <span class="product-badge">PRODUCTO DIGITAL</span>
+            <strong>AIMBOT COLOR</strong>
+            <span class="product-game">Para Valorant</span>
+            <span class="product-detail">Información y disponibilidad próximamente.</span>
+          </button>
+          <button class="product-card" type="button" data-product-choice aria-pressed="false">
+            <span class="product-art product-art--bypass"><span>UID</span><i>FREE FIRE</i></span>
+            <span class="product-badge">PRODUCTO DIGITAL</span>
+            <strong>BYPASS UID</strong>
+            <span class="product-game">Para Free Fire</span>
+            <span class="product-detail">Información y disponibilidad próximamente.</span>
+          </button>
+          <button class="product-card" type="button" data-product-choice aria-pressed="false">
+            <span class="product-art product-art--panel"><span>GX</span><i>SECURE</i></span>
+            <span class="product-badge">PRODUCTO DIGITAL</span>
+            <strong>PANEL SECURE</strong>
+            <span class="product-game">Panel digital</span>
+            <span class="product-detail">Información y disponibilidad próximamente.</span>
+          </button>
+        </div>
+        <div class="catalog-controls">
+          <button class="catalog-arrow" type="button" data-product-step="-1" aria-label="Producto anterior">←</button>
+          <span class="catalog-position" aria-live="polite">1 / 3</span>
+          <button class="catalog-arrow" type="button" data-product-step="1" aria-label="Producto siguiente">→</button>
+        </div>
+      </section>
+      <ol class="terms-list" hidden>
+        <li><strong>Uso responsable.</strong> Usa el sitio y sus contenidos de forma legal y respetuosa; no intentes afectar su funcionamiento.</li>
+        <li><strong>Privacidad.</strong> Esta página no solicita datos personales ni procesa pagos. El contador de visitas solo usa el almacenamiento de sesión del navegador.</li>
+        <li><strong>Seguridad.</strong> No compartas contraseñas, códigos de acceso ni información sensible por canales no verificados.</li>
+        <li><strong>Enlaces externos.</strong> Los sitios de terceros tienen sus propias condiciones y políticas de privacidad.</li>
+        <li><strong>Disponibilidad y cambios.</strong> La información puede actualizarse; consulta los canales oficiales de GALAXY X para novedades y soporte.</li>
+      </ol>
       <button class="dialog-action" type="button">Entendido</button>
     </dialog>
     <div class="toast" role="status" aria-live="polite"></div>

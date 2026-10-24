@@ -8,6 +8,7 @@ const contentTypes = {
   ".css": "text/css; charset=utf-8",
   ".html": "text/html; charset=utf-8",
   ".js": "text/javascript; charset=utf-8",
+  ".png": "image/png",
   ".svg": "image/svg+xml",
   ".json": "application/json; charset=utf-8"
 };
@@ -59,5 +60,5 @@ const server = http.createServer((request, response) => {
 });
 
 server.listen(port, "0.0.0.0", () => {
-  console.log(`MrGarabato is ready on port ${port}`);
+  console.log(`GALAXY X is ready on port ${port}`);
 });

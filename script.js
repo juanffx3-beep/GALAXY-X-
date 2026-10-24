@@ -1,23 +1,21 @@
 const dialog = document.querySelector(".info-dialog");
 const dialogTitle = document.querySelector("#dialog-title");
 const dialogDescription = document.querySelector(".dialog-description");
+const catalog = document.querySelector(".catalog");
+const termsList = document.querySelector(".terms-list");
 const toast = document.querySelector(".toast");
 
 const messages = {
-  neural: {
-    title: "Neural Auth",
-    text: "Una plataforma de autenticación pensada para integrar seguridad y una experiencia sencilla. El enlace del servicio se añadirá aquí cuando esté disponible."
-  },
   whatsapp: {
     title: "Comunidad WhatsApp",
     text: "Aquí encontrarás ofertas, novedades y conversación con la comunidad. El enlace de invitación se añadirá cuando esté disponible."
   },
   discord: {
     title: "Comunidad Discord",
-    text: "Noticias, ventas y soporte para la comunidad de MrGarabato. El enlace de invitación se añadirá cuando esté disponible."
+    text: "Noticias, ventas y soporte para la comunidad de GALAXY X."
   },
   panel: {
-    title: "Panel MrGarabato",
+    title: "Panel GALAXY X",
     text: "El panel de gestión estará disponible próximamente."
   },
   freefire: {
@@ -30,7 +28,7 @@ const messages = {
   },
   roblox: {
     title: "Roblox",
-    text: "Creaciones y novedades de Roblox dentro del universo MrGarabato."
+    text: "Creaciones y novedades de Roblox dentro del universo GALAXY X."
   },
   bloodstrike: {
     title: "Blood Strike",
@@ -42,11 +40,29 @@ const messages = {
   },
   fivem: {
     title: "FiveM",
-    text: "Creaciones y proyectos de FiveM dentro del universo MrGarabato."
+    text: "Creaciones y proyectos de FiveM dentro del universo GALAXY X."
   }
 };
 
 function openInfo(key) {
+  catalog.hidden = key !== "products";
+  termsList.hidden = key !== "terms";
+  dialogDescription.hidden = key === "products" || key === "terms";
+  dialog.classList.toggle("info-dialog--catalog", key === "products");
+  document.querySelector(".dialog-action").textContent = key === "products" ? "Cerrar catálogo" : "Entendido";
+
+  if (key === "products") {
+    dialogTitle.textContent = "Nuestros productos";
+    selectProduct(0);
+    dialog.showModal();
+    return;
+  }
+  if (key === "terms") {
+    dialogTitle.textContent = "Copyright y términos";
+    dialog.showModal();
+    return;
+  }
+
   const content = messages[key];
   if (!content) return;
   dialogTitle.textContent = content.title;
@@ -66,6 +82,27 @@ document.querySelector(".dialog-close").addEventListener("click", () => dialog.c
 document.querySelector(".dialog-action").addEventListener("click", () => dialog.close());
 dialog.addEventListener("click", (event) => {
   if (event.target === dialog) dialog.close();
+});
+
+const productCards = [...document.querySelectorAll("[data-product-choice]")];
+const productPosition = document.querySelector(".catalog-position");
+let selectedProduct = 0;
+
+function selectProduct(index) {
+  selectedProduct = (index + productCards.length) % productCards.length;
+  productCards.forEach((card, cardIndex) => {
+    const selected = cardIndex === selectedProduct;
+    card.classList.toggle("is-selected", selected);
+    card.setAttribute("aria-pressed", String(selected));
+  });
+  productPosition.textContent = `${selectedProduct + 1} / ${productCards.length}`;
+}
+
+productCards.forEach((card, index) => {
+  card.addEventListener("click", () => selectProduct(index));
+});
+document.querySelectorAll("[data-product-step]").forEach((button) => {
+  button.addEventListener("click", () => selectProduct(selectedProduct + Number(button.dataset.productStep)));
 });
 
 const year = document.querySelector("#year");
@@ -204,10 +241,70 @@ window.addEventListener("resize", () => {
 }, { passive: true });
 
 if (!reducedMotion && window.matchMedia("(pointer: fine)").matches) {
+  const trailCanvas = document.querySelector(".cursor-trail");
+  const trailContext = trailCanvas.getContext("2d");
+  const particles = [];
+  let previousPointer = null;
+  let trailFrame = 0;
+  let previousFrameTime = 0;
+
+  function resizeTrail() {
+    const pixelRatio = Math.min(window.devicePixelRatio || 1, 1.5);
+    trailCanvas.width = Math.round(window.innerWidth * pixelRatio);
+    trailCanvas.height = Math.round(window.innerHeight * pixelRatio);
+    trailContext.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+  }
+
+  function drawTrail(time) {
+    const delta = previousFrameTime ? Math.min((time - previousFrameTime) / 16.67, 2) : 1;
+    previousFrameTime = time;
+    trailContext.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
+    for (let index = particles.length - 1; index >= 0; index -= 1) {
+      const particle = particles[index];
+      particle.life -= delta;
+      particle.x += particle.velocityX * delta;
+      particle.y += particle.velocityY * delta;
+      if (particle.life <= 0) {
+        particles.splice(index, 1);
+        continue;
+      }
+      trailContext.beginPath();
+      trailContext.arc(particle.x, particle.y, particle.radius * particle.life, 0, Math.PI * 2);
+      trailContext.fillStyle = `rgba(221, 137, 255, ${particle.life * 0.42})`;
+      trailContext.fill();
+    }
+
+    if (particles.length) {
+      trailFrame = window.requestAnimationFrame(drawTrail);
+    } else {
+      trailFrame = 0;
+      previousFrameTime = 0;
+    }
+  }
+
+  resizeTrail();
+  window.addEventListener("resize", resizeTrail, { passive: true });
   window.addEventListener("pointermove", (event) => {
-    const offsetX = (event.clientX / window.innerWidth - 0.5) * 8;
-    const offsetY = (event.clientY / window.innerHeight - 0.5) * 8;
-    document.querySelector(".ambient--left").style.transform = `translate(${offsetX}px, ${offsetY}px)`;
-    document.querySelector(".ambient--right").style.transform = `translate(${-offsetX}px, ${-offsetY}px)`;
+    if (previousPointer) {
+      const deltaX = event.clientX - previousPointer.x;
+      const deltaY = event.clientY - previousPointer.y;
+      const distance = Math.hypot(deltaX, deltaY);
+      const count = Math.min(3, Math.floor(distance / 9));
+      for (let index = 0; index < count; index += 1) {
+        const progress = (index + 1) / count;
+        particles.push({
+          x: previousPointer.x + deltaX * progress,
+          y: previousPointer.y + deltaY * progress,
+          radius: Math.random() * 1.7 + 1,
+          life: 1,
+          velocityX: (Math.random() - 0.5) * 0.3,
+          velocityY: -Math.random() * 0.42
+        });
+      }
+      if (particles.length > 28) particles.splice(0, particles.length - 28);
+      if (particles.length && !trailFrame) trailFrame = window.requestAnimationFrame(drawTrail);
+    }
+    previousPointer = { x: event.clientX, y: event.clientY };
   }, { passive: true });
 }
