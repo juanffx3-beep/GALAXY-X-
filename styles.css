@@ -205,8 +205,7 @@ h1::after { position: absolute; inset: 0; overflow: hidden; color: transparent; 
 }
 .link-card:hover { transform: translateY(-2px); border-color: #bb75ff; background: linear-gradient(110deg, rgba(55, 29, 82, .96), rgba(28, 16, 46, .94)); box-shadow: 0 7px 23px rgba(109, 44, 186, .23), inset 0 1px rgba(255, 255, 255, .08); }
 .link-icon { display: block; width: 29px; height: 29px; flex: 0 0 auto; border-radius: 8px; object-fit: cover; box-shadow: 0 0 14px rgba(163, 93, 255, .2); }
-.link-icon--store, .link-icon--shield { background-image: url("assets/link-icons.png"); background-repeat: no-repeat; background-size: auto 670%; }
-.link-icon--store { background-position: 43.2% 4%; }
+.link-icon--shield { background-image: url("assets/link-icons.png"); background-repeat: no-repeat; background-size: auto 670%; }
 .link-icon--shield { background-position: 43.2% 33.4%; }
 .link-icon--chat { background-position: 43.2% 62.7%; }
 .link-icon--discord { background-position: 43.2% 92.2%; }
@@ -221,7 +220,8 @@ h1::after { position: absolute; inset: 0; overflow: hidden; color: transparent; 
 .section-heading span:last-child { transform: rotate(180deg); }
 .section-heading h2 { margin: 0; color: #b5a0d2; font-size: 8px; font-weight: 800; letter-spacing: .27em; text-transform: uppercase; white-space: nowrap; }
 .projects { position: relative; left: 50%; display: grid; width: min(760px, calc(100vw - 48px)); grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px; transform: translateX(-50%); }
-.project-card { display: flex; min-width: 0; min-height: 88px; align-items: center; justify-content: center; flex-direction: column; gap: 4px; padding: 7px 3px 6px; border: 1px solid rgba(155, 107, 223, .37); border-radius: 10px; color: #e7dfed; background: rgba(22, 14, 36, .8); backdrop-filter: blur(12px); cursor: pointer; transition: transform .22s, border-color .22s, background .22s, box-shadow .22s; }
+.project-card { --project-border-angle: 0deg; display: flex; min-width: 0; min-height: 88px; align-items: center; justify-content: center; flex-direction: column; gap: 4px; padding: 7px 3px 6px; border: 1px solid rgba(155, 107, 223, .37); border-radius: 10px; color: #e7dfed; background: rgba(22, 14, 36, .8); backdrop-filter: blur(12px); cursor: pointer; transition: transform .22s, border-color .22s, background .22s, box-shadow .22s; }
+.project-card::before { position: absolute; z-index: 2; inset: 0; padding: 1px; border-radius: inherit; background: conic-gradient(from var(--project-border-angle), transparent 0deg 315deg, rgba(177, 105, 255, .45) 333deg, #e8c3ff 345deg, #fff 350deg, #bc7dff 356deg, transparent 360deg); content: ""; pointer-events: none; -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); mask-composite: exclude; animation: project-border-orbit 4.5s linear infinite; }
 .project-card:hover { transform: translateY(-4px); border-color: rgba(206, 148, 255, .8); background: rgba(42, 25, 66, .93); box-shadow: 0 9px 22px rgba(92, 29, 158, .22); }
 .project-card > span:last-child { overflow: hidden; width: 100%; font-size: 7px; font-weight: 700; text-overflow: ellipsis; white-space: nowrap; }
 .project-card--image { position: relative; isolation: isolate; overflow: hidden; justify-content: flex-end; padding: 0 5px 8px; background: #130d1b; }
@@ -290,6 +290,13 @@ h1::after { position: absolute; inset: 0; overflow: hidden; color: transparent; 
 @keyframes equalize { from { transform: scaleY(.45); } to { transform: scaleY(1.4); } }
 @keyframes crown-float { 0%, 100% { transform: translateY(0) rotate(-19deg); } 50% { transform: translateY(-5px) rotate(-14deg); } }
 @keyframes boot-spin { to { transform: rotate(360deg); } }
+@keyframes project-border-orbit { to { --project-border-angle: 360deg; } }
+
+@property --project-border-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
 
 @media (min-width: 561px) {
   .page { padding: 12px 24px 32px; }
