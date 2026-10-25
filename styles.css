@@ -38,44 +38,7 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 2px solid 
   z-index: -4;
   inset: 0;
   overflow: hidden;
-  background:
-    radial-gradient(ellipse at 50% 44%, rgba(27, 10, 48, .42), transparent 54%),
-    #090510;
-  transform: scale(1.025);
-  animation: scene-arrive 1.4s ease-out both;
-}
-.backdrop::before,
-.backdrop::after {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 33%;
-  content: "";
-  background-image: url("assets/luffy-gear5-bg.png");
-  background-repeat: no-repeat;
-  background-size: 100vw 100vh;
-  opacity: .84;
-  pointer-events: none;
-}
-.backdrop::before {
-  left: 0;
-  background-position: left center;
-  -webkit-mask-image: linear-gradient(90deg, #000 0%, rgba(0, 0, 0, .88) 24%, rgba(0, 0, 0, .3) 62%, transparent 100%);
-  mask-image: linear-gradient(90deg, #000 0%, rgba(0, 0, 0, .88) 24%, rgba(0, 0, 0, .3) 62%, transparent 100%);
-}
-.backdrop::after {
-  right: 0;
-  background-position: right center;
-  -webkit-mask-image: linear-gradient(270deg, #000 0%, rgba(0, 0, 0, .88) 24%, rgba(0, 0, 0, .3) 62%, transparent 100%);
-  mask-image: linear-gradient(270deg, #000 0%, rgba(0, 0, 0, .88) 24%, rgba(0, 0, 0, .3) 62%, transparent 100%);
-}
-
-.center-shade {
-  position: fixed;
-  z-index: -3;
-  inset: 0;
-  pointer-events: none;
-  background: linear-gradient(90deg, transparent 0%, rgba(9, 5, 16, .48) 15%, rgba(9, 5, 16, .96) 36%, rgba(9, 5, 16, .96) 64%, rgba(9, 5, 16, .48) 85%, transparent 100%);
+  background: #090510 url("assets/image.png") center / cover no-repeat;
 }
 
 .stars {
@@ -291,7 +254,6 @@ h1::after { position: absolute; inset: 0; overflow: hidden; color: transparent; 
 .toast { position: fixed; z-index: 5; bottom: 54px; left: 50%; padding: 9px 14px; border: 1px solid rgba(189, 133, 255, .4); border-radius: 9px; color: #f4e8ff; background: rgba(26, 16, 40, .95); font-size: 11px; opacity: 0; pointer-events: none; transform: translate(-50%, 8px); transition: opacity .2s, transform .2s; }
 .toast.is-visible { opacity: 1; transform: translate(-50%, 0); }
 
-@keyframes scene-arrive { from { opacity: .5; transform: scale(1.06); } to { opacity: 1; transform: scale(1.025); } }
 @keyframes profile-arrive { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes equalize { from { transform: scaleY(.45); } to { transform: scaleY(1.4); } }
 @keyframes crown-float { 0%, 100% { transform: translateY(0) rotate(-5deg); } 50% { transform: translateY(-4px) rotate(-1deg); } }
@@ -353,14 +315,6 @@ h1::after { position: absolute; inset: 0; overflow: hidden; color: transparent; 
 
 @media (max-width: 560px) {
   body { min-height: 100svh; }
-  .backdrop::before,
-  .backdrop::after {
-    width: 40%;
-    background-size: 160vw 100vh;
-    opacity: .68;
-  }
-  .backdrop::before { background-position: left center; }
-  .backdrop::after { background-position: right center; }
   .page { padding: max(66px, calc(env(safe-area-inset-top) + 54px)) max(19px, env(safe-area-inset-right)) max(92px, calc(env(safe-area-inset-bottom) + 78px)) max(19px, env(safe-area-inset-left)); }
   .profile { width: min(100%, 400px); }
   .profile-emblem { min-height: 49px; }
