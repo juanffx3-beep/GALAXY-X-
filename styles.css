@@ -38,7 +38,11 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 2px solid 
   z-index: -4;
   inset: 0;
   overflow: hidden;
-  background: #090510 url("assets/image.png") center / cover no-repeat;
+  background-color: #090510;
+  background-image: url("assets/image.png"), url("assets/image.png");
+  background-position: center;
+  background-size: contain, cover;
+  background-repeat: no-repeat;
 }
 
 .stars {
