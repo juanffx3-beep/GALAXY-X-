@@ -1,8 +1,8 @@
 {
-  "name": "galaxy-x-landing",
+  "name": "fox-rank-landing",
   "version": "1.0.0",
   "private": true,
-  "description": "Sitio de GALAXY X",
+  "description": "Sitio de Fox Rank",
   "scripts": {
     "start": "node server.js"
   },

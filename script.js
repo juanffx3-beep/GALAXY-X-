@@ -8,10 +8,10 @@ const toast = document.querySelector(".toast");
 const messages = {
   discord: {
     title: "Comunidad Discord",
-    text: "Noticias, ventas y soporte para la comunidad de GALAXY X."
+    text: "Noticias, ventas y soporte para la comunidad de Fox Rank."
   },
   panel: {
-    title: "Panel GALAXY X",
+    title: "Panel Fox Rank",
     text: "El panel de gestión estará disponible próximamente."
   },
   freefire: {
@@ -24,7 +24,7 @@ const messages = {
   },
   roblox: {
     title: "Roblox",
-    text: "Creaciones y novedades de Roblox dentro del universo GALAXY X."
+    text: "Creaciones y novedades de Roblox dentro del universo Fox Rank."
   },
   bloodstrike: {
     title: "Blood Strike",
@@ -36,7 +36,7 @@ const messages = {
   },
   fivem: {
     title: "FiveM",
-    text: "Creaciones y proyectos de FiveM dentro del universo GALAXY X."
+    text: "Creaciones y proyectos de FiveM dentro del universo Fox Rank."
   }
 };
 
@@ -126,7 +126,7 @@ function setVolume() {
 function updateAudioState() {
   const playing = !music.paused;
   audioToggle.setAttribute("aria-pressed", String(playing));
-  audioToggle.setAttribute("aria-label", playing ? "Pausar música de GALAXY X" : "Reproducir música de GALAXY X");
+  audioToggle.setAttribute("aria-label", playing ? "Pausar música de Fox Rank" : "Reproducir música de Fox Rank");
   audioToggle.title = playing ? "Pausar música" : "Reproducir música";
   audioPlayer.classList.toggle("is-playing", playing);
 }
@@ -136,7 +136,7 @@ async function startMusic() {
     await music.play();
   } catch (error) {
     if (error.name !== "NotAllowedError" && error.name !== "AbortError") {
-      showToast("No se pudo cargar la música de GALAXY X.");
+      showToast("No se pudo cargar la música de Fox Rank.");
     }
   }
 }
@@ -220,7 +220,7 @@ function drawStars(time = 0) {
         context.beginPath();
         context.moveTo(stars[index].x, stars[index].y);
         context.lineTo(stars[neighbor].x, stars[neighbor].y);
-        context.strokeStyle = `rgba(147, 91, 221, ${(1 - distance / 105) * 0.15})`;
+        context.strokeStyle = `rgba(91, 221, 122, ${(1 - distance / 105) * 0.15})`;
         context.stroke();
       }
     }
@@ -229,7 +229,7 @@ function drawStars(time = 0) {
     const twinkle = reducedMotion ? 0.6 : 0.27 + (Math.sin(time * 0.0007 * star.speed + star.phase) + 1) * 0.34;
     context.beginPath();
     context.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-    context.fillStyle = `rgba(190, 130, 255, ${twinkle})`;
+    context.fillStyle = `rgba(130, 255, 166, ${twinkle})`;
     context.fill();
   });
   if (!reducedMotion) animationFrame = window.requestAnimationFrame(drawStars);
@@ -275,9 +275,9 @@ if (!reducedMotion && window.matchMedia("(pointer: fine)").matches) {
       trailContext.beginPath();
       const radius = particle.radius * particle.life;
       const glow = trailContext.createRadialGradient(particle.x, particle.y, 0, particle.x, particle.y, radius * 2.5);
-      glow.addColorStop(0, `rgba(255, 218, 255, ${particle.life * 0.78})`);
-      glow.addColorStop(0.35, `rgba(238, 117, 255, ${particle.life * 0.44})`);
-      glow.addColorStop(1, "rgba(168, 91, 255, 0)");
+      glow.addColorStop(0, `rgba(218, 255, 224, ${particle.life * 0.78})`);
+      glow.addColorStop(0.35, `rgba(117, 255, 144, ${particle.life * 0.44})`);
+      glow.addColorStop(1, "rgba(91, 255, 118, 0)");
       trailContext.arc(particle.x, particle.y, radius * 2.5, 0, Math.PI * 2);
       trailContext.fillStyle = glow;
       trailContext.fill();
@@ -334,10 +334,10 @@ if (!reducedMotion && window.matchMedia("(pointer: fine)").matches) {
     if (opacity > 0.01 || distance > 0.5) {
       const angle = Math.atan2(pointerTarget.y - pointerFollower.y, pointerTarget.x - pointerFollower.x);
       const halo = trailContext.createRadialGradient(pointerFollower.x, pointerFollower.y, 0, pointerFollower.x, pointerFollower.y, 18);
-      halo.addColorStop(0, `rgba(255, 205, 250, ${opacity * 0.82})`);
-      halo.addColorStop(0.18, `rgba(255, 116, 225, ${opacity * 0.48})`);
-      halo.addColorStop(0.55, `rgba(190, 82, 255, ${opacity * 0.16})`);
-      halo.addColorStop(1, "rgba(168, 91, 255, 0)");
+      halo.addColorStop(0, `rgba(205, 255, 213, ${opacity * 0.82})`);
+      halo.addColorStop(0.18, `rgba(116, 255, 152, ${opacity * 0.48})`);
+      halo.addColorStop(0.55, `rgba(82, 255, 131, ${opacity * 0.16})`);
+      halo.addColorStop(1, "rgba(91, 255, 118, 0)");
       trailContext.fillStyle = halo;
       trailContext.beginPath();
       trailContext.arc(pointerFollower.x, pointerFollower.y, 18, 0, Math.PI * 2);
@@ -347,7 +347,7 @@ if (!reducedMotion && window.matchMedia("(pointer: fine)").matches) {
       trailContext.beginPath();
       trailContext.arc(pointerFollower.x, pointerFollower.y, pulse, 0, Math.PI * 2);
       trailContext.lineWidth = 0.8;
-      trailContext.strokeStyle = `rgba(255, 211, 255, ${opacity * 0.58})`;
+      trailContext.strokeStyle = `rgba(211, 255, 219, ${opacity * 0.58})`;
       trailContext.stroke();
 
       const satelliteAngle = now / 260;
@@ -355,14 +355,14 @@ if (!reducedMotion && window.matchMedia("(pointer: fine)").matches) {
       const satelliteY = pointerFollower.y + Math.sin(satelliteAngle) * 10;
       trailContext.beginPath();
       trailContext.arc(satelliteX, satelliteY, 1.35, 0, Math.PI * 2);
-      trailContext.fillStyle = `rgba(224, 164, 255, ${opacity * 0.9})`;
+      trailContext.fillStyle = `rgba(164, 255, 194, ${opacity * 0.9})`;
       trailContext.fill();
 
       const tailX = pointerFollower.x - Math.cos(angle) * 16;
       const tailY = pointerFollower.y - Math.sin(angle) * 16;
       const tail = trailContext.createLinearGradient(tailX, tailY, pointerFollower.x, pointerFollower.y);
-      tail.addColorStop(0, "rgba(213, 106, 255, 0)");
-      tail.addColorStop(1, `rgba(255, 171, 238, ${opacity * 0.42})`);
+      tail.addColorStop(0, "rgba(106, 255, 131, 0)");
+      tail.addColorStop(1, `rgba(171, 255, 195, ${opacity * 0.42})`);
       trailContext.beginPath();
       trailContext.moveTo(tailX, tailY);
       trailContext.lineTo(pointerFollower.x, pointerFollower.y);
@@ -373,7 +373,7 @@ if (!reducedMotion && window.matchMedia("(pointer: fine)").matches) {
 
       trailContext.beginPath();
       trailContext.arc(pointerFollower.x, pointerFollower.y, 2.2, 0, Math.PI * 2);
-      trailContext.fillStyle = `rgba(255, 207, 239, ${opacity * 0.8})`;
+      trailContext.fillStyle = `rgba(207, 255, 218, ${opacity * 0.8})`;
       trailContext.fill();
     }
     return opacity > 0.01 || distance > 0.5;

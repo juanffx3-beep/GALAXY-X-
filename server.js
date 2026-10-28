@@ -80,5 +80,5 @@ const server = http.createServer((request, response) => {
 });
 
 server.listen(port, "0.0.0.0", () => {
-  console.log(`GALAXY X is ready on port ${port}`);
+  console.log(`Fox Rank is ready on port ${port}`);
 });

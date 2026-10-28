@@ -1,4 +1,4 @@
-# GALAXY X
+# Fox Rank
 
 Sitio adaptable a móviles servido por un pequeño servidor Node.js y configurado para desplegarse en Render.
 
@@ -15,7 +15,7 @@ Los cambios enviados a la rama conectada de GitHub pueden iniciar una nueva publ
 
 El catálogo de licencias y los términos se abren dentro de la página, sin redirecciones. Discord abre la invitación configurada en `index.html` y WhatsApp enlaza a `https://wa.me/51993022680`.
 
-La página usa el logo como favicon y reproduce `assets/galaxy-x-theme.mp3` con el volumen inicial al 50 %. Los navegadores pueden bloquear la reproducción automática; si ocurre, el visitante puede iniciar la música desde el control. Las imágenes de proyectos se guardan con nombres propios en `assets/` y se adaptan al espacio de cada tarjeta.
+La página usa `assets/fox-rank-mark.png` como logo y favicon, `assets/fox-rank-background.png` como fondo y reproduce `assets/site-music.mp3` con el volumen inicial al 50 %. Los navegadores pueden bloquear la reproducción automática; si ocurre, el visitante puede iniciar la música desde el control. Las imágenes de proyectos se guardan con nombres propios en `assets/` y se adaptan al espacio de cada tarjeta.
 
 ## Seguridad y límites
 
